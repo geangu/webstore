@@ -32,3 +32,18 @@ div#filterPane .buttons {
 .filterButton {
     border: 2px;
 }
+
+.fieldcontain label {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    padding: 0 0 0.4em 0;
+}
+
+.fieldcontain input,
+.fieldcontain select {
+    display: block;
+    padding: 0.4em;
+    width: 100%;
+}

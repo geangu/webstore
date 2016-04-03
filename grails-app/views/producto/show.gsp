@@ -72,7 +72,7 @@
 				<li class="fieldcontain">
 					<span id="categoria-label" class="property-label"><g:message code="producto.categoria.label" default="Categoria" /></span>
 					
-						<span class="property-value" aria-labelledby="categoria-label"><g:fieldValue bean="${productoInstance}" field="categoria"/></span>
+						<span class="property-value" aria-labelledby="categoria-label"><g:link controller="categoria" action="show" id="${productoInstance?.categoria?.id}">${productoInstance?.categoria?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

@@ -52,7 +52,7 @@
 		<g:message code="producto.categoria.label" default="Categoria" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="categoria" required="" value="${productoInstance?.categoria}"/>
+	<g:select id="categoria" name="categoria.id" from="${hogaryestilo.Categoria.list()}" optionKey="id" required="" value="${productoInstance?.categoria?.id}" class="many-to-one"/>
 
 </div>
 

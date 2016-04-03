@@ -28,39 +28,25 @@
 				</p>
 			</div>
 			<table>
-			<thead>
+				<thead>
 					<tr>
-
 						<g:sortableColumn property="referencia" title="${message(code: 'producto.referencia.label', default: 'Referencia')}" />
-
 						<g:sortableColumn property="nombre" title="${message(code: 'producto.nombre.label', default: 'Nombre')}" />
-
 						<g:sortableColumn property="descripcion" title="${message(code: 'producto.descripcion.label', default: 'Descripcion')}" />
-
 						<g:sortableColumn property="precio" title="${message(code: 'producto.precio.label', default: 'Precio')}" />
-
 						<g:sortableColumn property="precioCredito" title="${message(code: 'producto.precioCredito.label', default: 'Precio Credito')}" />
-
 						<g:sortableColumn property="categoria" title="${message(code: 'producto.categoria.label', default: 'Categoria')}" />
-
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${productoInstanceList}" status="i" var="productoInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-
 						<td><g:link action="show" id="${productoInstance.id}">${fieldValue(bean: productoInstance, field: "referencia")}</g:link></td>
-
 						<td>${fieldValue(bean: productoInstance, field: "nombre")}</td>
-
 						<td>${fieldValue(bean: productoInstance, field: "descripcion")}</td>
-
 						<td>${fieldValue(bean: productoInstance, field: "precio")}</td>
-
 						<td>${fieldValue(bean: productoInstance, field: "precioCredito")}</td>
-
 						<td>${fieldValue(bean: productoInstance, field: "categoria")}</td>
-
 					</tr>
 				</g:each>
 				</tbody>
