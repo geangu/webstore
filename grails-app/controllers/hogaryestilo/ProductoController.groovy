@@ -2,9 +2,11 @@ package hogaryestilo
 
 import grails.transaction.Transactional
 import org.grails.plugin.filterpane.FilterPaneUtils
+import org.springframework.security.access.annotation.Secured
 import static org.springframework.http.HttpStatus.*
 
 @Transactional(readOnly = true)
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 class ProductoController {
 
     def filterPaneService
@@ -29,11 +31,13 @@ class ProductoController {
         respond productoInstance
     }
 
+    @Secured(['ROLE_ADMIN'])
     def create() {
         respond new Producto(params)
     }
 
     @Transactional
+    @Secured(['ROLE_ADMIN'])
     def save(Producto productoInstance) {
         if (productoInstance == null) {
             notFound()
@@ -56,11 +60,13 @@ class ProductoController {
         }
     }
 
+    @Secured(['ROLE_ADMIN'])
     def edit(Producto productoInstance) {
         respond productoInstance
     }
 
     @Transactional
+    @Secured(['ROLE_ADMIN'])
     def update(Producto productoInstance) {
         if (productoInstance == null) {
             notFound()
@@ -84,6 +90,7 @@ class ProductoController {
     }
 
     @Transactional
+    @Secured(['ROLE_ADMIN'])
     def delete(Producto productoInstance) {
 
         if (productoInstance == null) {

@@ -24,6 +24,7 @@
 		</div>
 
 		<div class="home">
+			<sec:username /> (<g:link controller="logout">sign out</g:link>)
 			<h1 class="title">Hogar y Estilo</h1>
 			<hr>
 			<br>

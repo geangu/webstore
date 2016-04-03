@@ -1,11 +1,12 @@
 package hogaryestilo
 
-
-
-import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import org.grails.plugin.filterpane.FilterPaneUtils
+import org.springframework.security.access.annotation.Secured
+import static org.springframework.http.HttpStatus.*
 
 @Transactional(readOnly = true)
+@Secured(['ROLE_ADMIN'])
 class CategoriaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -13,6 +14,16 @@ class CategoriaController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Categoria.list(params), model:[categoriaInstanceCount: Categoria.count()]
+    }
+
+    def filter(Integer max) {
+        if(!params.max) params.max = 10
+        render( view:'index', model:[
+            categoriaInstanceList: filterPaneService.filter( params, Categoria ),
+            categoriaInstanceCount: filterPaneService.count( params, Categoria ),
+            filterParams: FilterPaneUtils.extractFilterParams(params),
+            params: params
+        ])
     }
 
     def show(Categoria categoriaInstance) {

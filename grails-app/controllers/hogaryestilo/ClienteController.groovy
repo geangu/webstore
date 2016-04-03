@@ -2,9 +2,12 @@ package hogaryestilo
 
 import grails.transaction.Transactional
 import org.grails.plugin.filterpane.FilterPaneUtils
+import org.springframework.security.access.annotation.Secured
 import static org.springframework.http.HttpStatus.*
 
 @Transactional(readOnly = true)
+
+@Secured(['ROLE_ADMIN','ROLE_USER'])
 class ClienteController {
 
     def filterPaneService
@@ -84,6 +87,7 @@ class ClienteController {
     }
 
     @Transactional
+    @Secured(['ROLE_ADMIN'])
     def delete(Cliente clienteInstance) {
 
         if (clienteInstance == null) {
