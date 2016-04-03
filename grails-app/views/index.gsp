@@ -15,8 +15,8 @@
 
 		<div class="nav" role="navigation">
 			<ul>
-				<li><g:link controller="bodega"><i class="fa fa-building"></i> Bodegas</g:link></li>
 				<li><g:link controller="proveedor"><i class="fa fa-truck"></i> Proveedores</g:link></li>
+				<li><g:link controller="categoria"><i class="fa fa-building"></i> Categoria</g:link></li>
 				<li><g:link controller="producto"><i class="fa fa-th-list"></i> Productos</g:link></li>
 				<li><g:link controller="cliente"><i class="fa fa-user"></i> Clientes</g:link></li>
 				<li><g:link controller="salir"><i class="fa fa-sign-out"></i> Salir</g:link></li>

@@ -7,8 +7,9 @@ class Producto {
     String descripcion
     BigInteger precio
     BigInteger precioCredito
-    String categoria
     String observaciones
+
+    static belongsTo = [ categoria: Categoria ]
 
     static constraints = {
         referencia nullable: false, unique: true
