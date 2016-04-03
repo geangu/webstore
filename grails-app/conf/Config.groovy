@@ -121,11 +121,13 @@ log4j.main = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'hogaryestilo.Usuario'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'hogaryestilo.UsuarioRol'
 grails.plugin.springsecurity.authority.className = 'hogaryestilo.Rol'
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                ['ROLE_ADMIN','ROLE_USER'],
 	'/index':           ['ROLE_ADMIN','ROLE_USER'],
 	'/index.gsp':       ['ROLE_ADMIN','ROLE_USER'],
-	'/assets/**':       ['permitAll'],
+	'/register/**':     ['permitAll'],
+    '/assets/**':       ['permitAll'],
 	'/**/js/**':        ['permitAll'],
 	'/**/css/**':       ['permitAll'],
 	'/**/images/**':    ['permitAll'],

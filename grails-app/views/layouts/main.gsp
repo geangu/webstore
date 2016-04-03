@@ -18,6 +18,7 @@
 	</head>
 	<body>
 		<div id="grailsLogo" role="banner"><a href="${resource(file:'/')}"><asset:image src="grails_logo.png" alt="Hogar y Estilo"/></a></div>
+
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">
 			Developed by
