@@ -21,7 +21,8 @@
 					<li><g:link controller="categoria"><i class="fa fa-building"></i> Categoria</g:link></li>
 				</sec:ifAllGranted>
 				<li><g:link controller="venta"><i class="fa fa-th-list"></i> Ventas </g:link></li>
-				<li><g:link controller="producto"><i class="fa fa-th-list"></i> Productos</g:link></li>
+				<li><g:link controller="producto"><i class="fa fa-clone"></i> Productos</g:link></li>
+				<li><g:link controller="zona"><i class="fa fa-map-marker"></i> Zona</g:link></li>
 				<li><g:link controller="cliente"><i class="fa fa-users"></i> Clientes</g:link></li>
 				<li><a href="#" onclick="location.href='${createLink(controller:'logout')}';"><i class="fa fa-sign-out"></i> Salir</a></li>
 			</ul>
