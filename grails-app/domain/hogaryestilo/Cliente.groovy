@@ -6,7 +6,6 @@ class Cliente {
     String nombre
     String telefono
     String direccion
-
     Zona zona
 
     static constraints = {
@@ -19,6 +18,6 @@ class Cliente {
 
     @Override
     String toString(){
-        nombre
+        documento + '-' + nombre
     }
 }

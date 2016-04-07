@@ -12,18 +12,29 @@
 		<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
-  		<asset:stylesheet src="application.css"/>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<asset:stylesheet src="application.css"/>
+		<asset:stylesheet src="select2.min.css"/>
 		<asset:javascript src="application.js"/>
+		<style media="screen">
+			select, textarea{
+				width: 100%;
+			}
+		</style>
 		<g:layoutHead/>
 	</head>
 	<body>
 		<div id="grailsLogo" role="banner"><a href="${resource(file:'/')}"><asset:image src="grails_logo.png" alt="Hogar y Estilo"/></a></div>
-
+		
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">
 			Developed by
 			<a href="http://twitter.com/geangu">@geangu</a> 2016©
 		</div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
+		<asset:javascript src="select2.min.js"/>
+		<script>
+			$('select').select2();
+		</script>
 	</body>
 </html>

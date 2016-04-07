@@ -23,6 +23,6 @@ class Producto {
 
     @Override
     String toString(){
-        referencia
+        referencia + ' - ' + descripcion
     }
 }
