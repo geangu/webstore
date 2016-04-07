@@ -31,6 +31,8 @@ environments {
         dataSource {
             dbCreate = "update"
             url = "jdbc:mysql://localhost/hogaryestilo"
+            username = "root"
+            password = "123456"
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true
