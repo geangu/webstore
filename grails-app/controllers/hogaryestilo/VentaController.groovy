@@ -7,20 +7,6 @@ class VentaController {
 
     def springSecurityService
 
-    @Secured(['ROLE_ADMIN'])
-    def index() {
-        redirect action: 'lista'
-    }
-
-    @Secured(['ROLE_ADMIN'])
-    def lista(){
-        [ventas: Venta.list()]
-    }
-
-    def crear(){
-        [venta: new Venta()]
-    }
-
     def guardar(){
         def venta = new Venta(
             vendedor: Usuario.get(springSecurityService.principal.id),
@@ -38,8 +24,9 @@ class VentaController {
         redirect action:'detalles', id: venta.id
     }
 
-    def detalles(Venta venta) {
-        render view: 'detalles', model: [venta: venta], params:[id: venta.id]
+    def detalles() {
+        def venta = Venta.get(params?.id)
+        render view: 'detalles', model: [venta: venta?:new Venta()], params:[id: venta?.id]
     }
 
     def anadir(Venta venta){
@@ -93,6 +80,25 @@ class VentaController {
             }
         }
         venta.save(flush: true, failOnError: true)
+    }
+
+    def credito(Venta venta){
+        def credito = new Credito(
+            venta: venta,
+            fecha: venta.fecha,
+            total: venta.total,
+            saldo: venta.total
+        )
+        [credito: credito, venta: venta]
+    }
+
+    def pago(Venta venta){
+        redirect action:'credito', id:venta.id
+    }
+
+    def imprimir(Venta venta){
+        def credito = Credito.findByVenta(venta);
+        [venta: venta, credito: credito]
     }
 
 }

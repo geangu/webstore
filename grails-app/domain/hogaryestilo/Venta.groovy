@@ -7,10 +7,6 @@ class Venta {
     Usuario vendedor
     Cliente cliente
     String observaciones
-
-    Integer cuotas
-    BigInteger abono
-    BigInteger saldo
     BigInteger total
 
     Boolean cerrada
@@ -18,13 +14,12 @@ class Venta {
     static hasMany = [detalles:DetalleVenta]
 
     static constraints = {
+        fecha nullable: false
         tipo nullable: false, inList:['Contado','Crédito']
         vendedor nullable: false
         cliente nullable: false
         observaciones nullable: true
-        cuotas nullable: false
-        abono nullable: false
-        saldo nullable: false
         total nullable: false
+        cerrada nullable: false, default: false
     }
 }
