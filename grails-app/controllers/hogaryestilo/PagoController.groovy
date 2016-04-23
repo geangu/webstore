@@ -18,4 +18,21 @@ class PagoController {
             redirect action:"index"
         }
     }
+
+    def crear(){
+        def credito = Credito.get(params.creditoId)
+        def pago = new Pago(
+            credito: credito,
+            tipoPago: 'Cuota',
+            valor: new BigInteger(params.valor),
+            fecha: new Date()
+        )
+        pago.save(flush: true, failOnError:true)
+
+        credito.saldo -= new BigInteger(params.valor)
+        credito.save(flush: true, failOnError:true)
+
+        flash.message="El pago se ingreso correctamente"
+        redirect action:"index"
+    }
 }

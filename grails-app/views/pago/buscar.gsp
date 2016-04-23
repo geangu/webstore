@@ -11,14 +11,11 @@
     <div class="message" role="status">${flash.message}</div>
 </g:if>
 
-<div class="">
 
-</div>
-
-<g:form name="name" controller="controller" action="action">
+<g:form name="name" controller="pago" action="crear">
 
     <fieldset class="form">
-
+        <input type="hidden" name="creditoId" value="${credito.id}"/>
         <div class="fieldcontain">
             <label for="total">Total Credito</label>
             <input name="total" value="${credito.total}" type="number" readonly="true" disabled="true"/>
