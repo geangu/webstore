@@ -4,6 +4,7 @@
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
         <li><a class="search" href="${createLink(action: 'index')}">Buscar</a></li>
+        <li><a class="list" href="${createLink(action: 'historial', params:[creditoId: credito.id])}">Detalles</a></li>
     </ul>
 </div>
 
@@ -30,6 +31,8 @@
         </div>
     </fieldset>
     <fieldset class="buttons">
-        <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+        <g:if test="${credito.saldo > 0}">
+            <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+        </g:if>
     </fieldset>
 </g:form>

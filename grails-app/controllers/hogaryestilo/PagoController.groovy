@@ -35,4 +35,9 @@ class PagoController {
         flash.message="El pago se ingreso correctamente"
         redirect action:"index"
     }
+
+    def historial(){
+        def credito = Credito.get(params.creditoId)
+        [credito: credito]
+    }
 }
