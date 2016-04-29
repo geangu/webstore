@@ -29,7 +29,7 @@
 					<li><g:link controller="venta" action="detalles"><i class="fa fa-th-list"></i> Ventas </g:link></li>
 				</sec:ifAllGranted>
 				<sec:ifAllGranted roles="ROLE_USER">
-					<li><g:link controller="venta" action="crear"><i class="fa fa-shopping-bag"></i> Ventas </g:link></li>
+					<li><g:link controller="venta" action="detalles"><i class="fa fa-shopping-bag"></i> Ventas </g:link></li>
 				</sec:ifAllGranted>
 
 				<li><a href="#" onclick="location.href='${createLink(controller:'logout')}';"><i class="fa fa-sign-out"></i> Salir</a></li>

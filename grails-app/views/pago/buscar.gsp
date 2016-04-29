@@ -12,13 +12,28 @@
     <div class="message" role="status">${flash.message}</div>
 </g:if>
 
+<table>
+    <thead>
+        <th>Cliente</th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>${cliente}</td>
+        </tr>
+    </tbody>
+</table>
+<hr>
 
 <g:form name="name" controller="pago" action="crear">
 
     <fieldset class="form">
         <input type="hidden" name="creditoId" value="${credito.id}"/>
         <div class="fieldcontain">
-            <label for="total">Total Credito</label>
+            <label for="creditoIdRead">Número Crédito</label>
+            <input name="creditoIdRead" value="${credito.id}" type="number" readonly="true" disabled="true"/>
+        </div>
+        <div class="fieldcontain">
+            <label for="total">Total Crédito</label>
             <input name="total" value="${credito.total}" type="number" readonly="true" disabled="true"/>
         </div>
         <div class="fieldcontain">
