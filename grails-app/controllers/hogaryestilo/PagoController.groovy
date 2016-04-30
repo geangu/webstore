@@ -1,16 +1,17 @@
 package hogaryestilo
 
 import org.springframework.security.access.annotation.Secured
-import java.util.Calendar
 import groovy.sql.Sql
 import java.util.concurrent.TimeUnit
 
 @Secured(['ROLE_ADMIN','ROLE_USER'])
 class PagoController {
 
-    def index(){
+    def dataSource
 
-    }
+    def index(){}
+
+    def zona(){}
 
     def buscar(){
         def credito = Credito.get(params.creditoId)
@@ -62,8 +63,6 @@ class PagoController {
         [credito: credito]
     }
 
-    def dataSource
-
     def morosos(){
 
         def query = """
@@ -74,6 +73,21 @@ class PagoController {
             )
             group by credito_id;
         """
+
+        if( params.zona ){
+            query = """
+                select p.credito_id id, max(p.fecha) fecha
+                from pago p
+                inner join credito c on c.id = p.credito_id
+                inner join venta v on v.id = c.venta_id
+                inner join cliente cl on cl.id = v.cliente_id
+                inner join zona z on z.id = cl.zona_id
+                where credito_id in (
+                select id from credito where saldo > 0
+                ) and z.id = ${params.zona}
+                group by p.credito_id;
+            """
+        }
 
         def sql = new Sql(dataSource)
 
@@ -103,5 +117,4 @@ class PagoController {
 
         render rows as grails.converters.JSON
     }
-
 }
