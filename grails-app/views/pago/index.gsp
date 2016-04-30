@@ -8,6 +8,7 @@
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
                 <li><a class="list" onclick="crearExcel()">Reporte Morosos</a></li>
+                <li><a class="list" href="${createLink(controller: 'pago', action:'zona')}">Reporte Morosos por Zona</a></li>
             </ul>
         </div>
         <g:if test="${flash.message}">
