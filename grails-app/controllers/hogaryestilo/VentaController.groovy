@@ -6,6 +6,7 @@ import org.springframework.security.access.annotation.Secured
 class VentaController {
 
     def springSecurityService
+    def productoService
 
     def guardar(){
         def venta = new Venta(
@@ -55,6 +56,8 @@ class VentaController {
     def cerrar(Venta venta){
         venta.cerrada = true
         calcularTotal(venta)
+        productoService.calcularCantidad(venta)
+        venta.save(flush: true, failOnError: true)
         flash.message = "Venta cerrada"
         redirect url: '/'
     }

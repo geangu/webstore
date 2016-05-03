@@ -5,9 +5,9 @@ package hogaryestilo
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(DetalleVentaController)
-@Mock(DetalleVenta)
-class DetalleVentaControllerSpec extends Specification {
+@TestFor(ProductoController)
+@Mock(Producto)
+class ProductoControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
@@ -21,8 +21,8 @@ class DetalleVentaControllerSpec extends Specification {
             controller.index()
 
         then:"The model is correct"
-            !model.detalleVentaInstanceList
-            model.detalleVentaInstanceCount == 0
+            !model.productoInstanceList
+            model.productoInstanceCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -30,7 +30,7 @@ class DetalleVentaControllerSpec extends Specification {
             controller.create()
 
         then:"The model is correctly created"
-            model.detalleVentaInstance!= null
+            model.productoInstance!= null
     }
 
     void "Test the save action correctly persists an instance"() {
@@ -38,25 +38,25 @@ class DetalleVentaControllerSpec extends Specification {
         when:"The save action is executed with an invalid instance"
             request.contentType = FORM_CONTENT_TYPE
             request.method = 'POST'
-            def detalleVenta = new DetalleVenta()
-            detalleVenta.validate()
-            controller.save(detalleVenta)
+            def producto = new Producto()
+            producto.validate()
+            controller.save(producto)
 
         then:"The create view is rendered again with the correct model"
-            model.detalleVentaInstance!= null
+            model.productoInstance!= null
             view == 'create'
 
         when:"The save action is executed with a valid instance"
             response.reset()
             populateValidParams(params)
-            detalleVenta = new DetalleVenta(params)
+            producto = new Producto(params)
 
-            controller.save(detalleVenta)
+            controller.save(producto)
 
         then:"A redirect is issued to the show action"
-            response.redirectedUrl == '/detalleVenta/show/1'
+            response.redirectedUrl == '/producto/show/1'
             controller.flash.message != null
-            DetalleVenta.count() == 1
+            Producto.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -68,11 +68,11 @@ class DetalleVentaControllerSpec extends Specification {
 
         when:"A domain instance is passed to the show action"
             populateValidParams(params)
-            def detalleVenta = new DetalleVenta(params)
-            controller.show(detalleVenta)
+            def producto = new Producto(params)
+            controller.show(producto)
 
         then:"A model is populated containing the domain instance"
-            model.detalleVentaInstance == detalleVenta
+            model.productoInstance == producto
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -84,11 +84,11 @@ class DetalleVentaControllerSpec extends Specification {
 
         when:"A domain instance is passed to the edit action"
             populateValidParams(params)
-            def detalleVenta = new DetalleVenta(params)
-            controller.edit(detalleVenta)
+            def producto = new Producto(params)
+            controller.edit(producto)
 
         then:"A model is populated containing the domain instance"
-            model.detalleVentaInstance == detalleVenta
+            model.productoInstance == producto
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -98,28 +98,28 @@ class DetalleVentaControllerSpec extends Specification {
             controller.update(null)
 
         then:"A 404 error is returned"
-            response.redirectedUrl == '/detalleVenta/index'
+            response.redirectedUrl == '/producto/index'
             flash.message != null
 
 
         when:"An invalid domain instance is passed to the update action"
             response.reset()
-            def detalleVenta = new DetalleVenta()
-            detalleVenta.validate()
-            controller.update(detalleVenta)
+            def producto = new Producto()
+            producto.validate()
+            controller.update(producto)
 
         then:"The edit view is rendered again with the invalid instance"
             view == 'edit'
-            model.detalleVentaInstance == detalleVenta
+            model.productoInstance == producto
 
         when:"A valid domain instance is passed to the update action"
             response.reset()
             populateValidParams(params)
-            detalleVenta = new DetalleVenta(params).save(flush: true)
-            controller.update(detalleVenta)
+            producto = new Producto(params).save(flush: true)
+            controller.update(producto)
 
         then:"A redirect is issues to the show action"
-            response.redirectedUrl == "/detalleVenta/show/$detalleVenta.id"
+            response.redirectedUrl == "/producto/show/$producto.id"
             flash.message != null
     }
 
@@ -130,23 +130,23 @@ class DetalleVentaControllerSpec extends Specification {
             controller.delete(null)
 
         then:"A 404 is returned"
-            response.redirectedUrl == '/detalleVenta/index'
+            response.redirectedUrl == '/producto/index'
             flash.message != null
 
         when:"A domain instance is created"
             response.reset()
             populateValidParams(params)
-            def detalleVenta = new DetalleVenta(params).save(flush: true)
+            def producto = new Producto(params).save(flush: true)
 
         then:"It exists"
-            DetalleVenta.count() == 1
+            Producto.count() == 1
 
         when:"The domain instance is passed to the delete action"
-            controller.delete(detalleVenta)
+            controller.delete(producto)
 
         then:"The instance is deleted"
-            DetalleVenta.count() == 0
-            response.redirectedUrl == '/detalleVenta/index'
+            Producto.count() == 0
+            response.redirectedUrl == '/producto/index'
             flash.message != null
     }
 }

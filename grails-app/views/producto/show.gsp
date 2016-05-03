@@ -86,6 +86,24 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${productoInstance?.almacen}">
+				<li class="fieldcontain">
+					<span id="almacen-label" class="property-label"><g:message code="producto.almacen.label" default="Almacen" /></span>
+					
+						<span class="property-value" aria-labelledby="almacen-label"><g:fieldValue bean="${productoInstance}" field="almacen"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${productoInstance?.vendidos}">
+				<li class="fieldcontain">
+					<span id="vendidos-label" class="property-label"><g:message code="producto.vendidos.label" default="Vendidos" /></span>
+					
+						<span class="property-value" aria-labelledby="vendidos-label"><g:fieldValue bean="${productoInstance}" field="vendidos"/></span>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form url="[resource:productoInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">

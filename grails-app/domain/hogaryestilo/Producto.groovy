@@ -9,6 +9,9 @@ class Producto {
     BigInteger precioCredito
     String observaciones
 
+    Integer almacen
+    Integer vendidos
+
     static belongsTo = [ categoria: Categoria ]
 
     static constraints = {
@@ -19,6 +22,8 @@ class Producto {
         precioCredito nullable: false
         categoria nullable: false
         observaciones nullable: true
+        almacen nullable: false, default: 0
+        vendidos nullable: false, default: 0
     }
 
     @Override

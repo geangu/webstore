@@ -65,3 +65,21 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: productoInstance, field: 'almacen', 'error')} required">
+	<label for="almacen">
+		<g:message code="producto.almacen.label" default="Almacen" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="almacen" type="number" value="${productoInstance.almacen}" required=""/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: productoInstance, field: 'vendidos', 'error')} required">
+	<label for="vendidos">
+		<g:message code="producto.vendidos.label" default="Vendidos" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="vendidos" type="number" value="${productoInstance.vendidos}" required=""/>
+
+</div>
+

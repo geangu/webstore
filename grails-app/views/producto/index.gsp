@@ -36,6 +36,8 @@
 						<g:sortableColumn property="precio" title="${message(code: 'producto.precio.label', default: 'Precio')}" />
 						<g:sortableColumn property="precioCredito" title="${message(code: 'producto.precioCredito.label', default: 'Precio Credito')}" />
 						<g:sortableColumn property="categoria" title="${message(code: 'producto.categoria.label', default: 'Categoria')}" />
+						<g:sortableColumn property="categoria" title="${message(code: 'producto.almacen.label', default: 'Almacen')}" />
+						<g:sortableColumn property="categoria" title="${message(code: 'producto.vendidos.label', default: 'Vendidos')}" />
 					</tr>
 				</thead>
 				<tbody>
@@ -47,6 +49,8 @@
 						<td>${fieldValue(bean: productoInstance, field: "precio")}</td>
 						<td>${fieldValue(bean: productoInstance, field: "precioCredito")}</td>
 						<td>${fieldValue(bean: productoInstance, field: "categoria")}</td>
+						<td>${fieldValue(bean: productoInstance, field: "almacen")}</td>
+						<td>${fieldValue(bean: productoInstance, field: "vendidos")}</td>
 					</tr>
 				</g:each>
 				</tbody>
