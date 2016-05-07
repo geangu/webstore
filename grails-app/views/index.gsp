@@ -11,7 +11,6 @@
 		</style>
 	</head>
 	<body>
-
 		<div class="nav" role="navigation">
 			<ul>
 				<sec:ifAllGranted roles="ROLE_ADMIN">
@@ -42,6 +41,12 @@
 			<br>
 			<asset:image src="home.jpeg" style="width: 100%;" />
 		</div>
-
+		<g:each var="p" in="${hogaryestilo.Producto.list()}">
+			<g:if test="${p.almacen < 3}">
+				<script>
+					$.notify("Quedan solo ${p.almacen} unidades del producto ${p}", "warn");
+				</script>
+			</g:if>
+		</g:each>
 	</body>
 </html>
