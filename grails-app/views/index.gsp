@@ -48,5 +48,12 @@
 				</script>
 			</g:if>
 		</g:each>
+		<g:set var="clientesMora"><g:include controller="cliente" action="clientesMora"/></g:set>
+		<g:if test="${clientesMora!='0'}">
+			<script>
+				$.notify("A la fecha se presentan ${clientesMora} clientes en mora", "error");
+			</script>
+		</g:if>
+
 	</body>
 </html>

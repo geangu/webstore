@@ -1,6 +1,7 @@
 package hogaryestilo
 
 import grails.transaction.Transactional
+import groovy.sql.Sql
 import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.security.access.annotation.Secured
 import static org.springframework.http.HttpStatus.*
@@ -8,6 +9,8 @@ import static org.springframework.http.HttpStatus.*
 @Transactional(readOnly = true)
 @Secured(['ROLE_ADMIN','ROLE_USER'])
 class ClienteController {
+
+    def dataSource
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -112,4 +115,24 @@ class ClienteController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    def clientesMora(){
+        def query = """
+            select count(*) cantidad from (
+                select credito_id id, min(fecha) fecha
+                from cuota
+                where credito_id in (
+                	select id from credito where saldo > 0
+                )
+                group by credito_id
+            ) a;"""
+
+        def sql = new Sql(dataSource)
+        def cantidad = 0
+        sql.rows( query ).each{
+            cantidad = it.cantidad
+        }
+        render cantidad
+    }
+
 }
