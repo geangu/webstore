@@ -2,6 +2,7 @@ package hogaryestilo
 
 import grails.transaction.Transactional
 import groovy.sql.Sql
+import java.util.concurrent.TimeUnit
 import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.security.access.annotation.Secured
 import static org.springframework.http.HttpStatus.*
@@ -118,19 +119,24 @@ class ClienteController {
 
     def clientesMora(){
         def query = """
-            select count(*) cantidad from (
                 select credito_id id, min(fecha) fecha
                 from cuota
                 where credito_id in (
                 	select id from credito where saldo > 0
-                )
-                group by credito_id
-            ) a;"""
+                ) and pagada = false
+                group by credito_id"""
 
         def sql = new Sql(dataSource)
         def cantidad = 0
         sql.rows( query ).each{
-            cantidad = it.cantidad
+            def credito = Credito.get(it.id)
+            def dias_mora = TimeUnit.DAYS.convert(
+                new Date().getTime() - it.fecha.getTime(),
+                TimeUnit.MILLISECONDS
+            )
+            if(dias_mora > 30 && credito.saldo > BigInteger.ZERO){
+                cantidad++
+            }
         }
         render cantidad
     }
