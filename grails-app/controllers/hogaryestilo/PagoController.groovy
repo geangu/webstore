@@ -39,11 +39,9 @@ class PagoController {
     def crear(){
 
         def cuota = Cuota.get(params.cuota)
-        cuota.pagada = true
-        cuota.fechaPago = new Date()
 
         def credito = cuota.credito
-        credito.saldo -= new BigInteger(params.valor)
+        credito.saldo -= new BigInteger(params.valorPago)
 
         if(credito.saldo < 0){
             flash.message="No puedes ingresar un valor superior al saldo"
@@ -51,7 +49,42 @@ class PagoController {
             return
         }
 
-        cuota.save( flush: true, failOnError: true)
+        def valorPago = params.valorPago
+        if( valorPago ){
+            if(valorPago == credito.valorCuota){
+                cuota.pagada = true
+                cuota.fechaPago = new Date()
+                cuota.valorPago = new BigInteger(valorPago)
+            } else if(new BigInteger(valorPago) < credito.valorCuota){
+                cuota.valorPago = new BigInteger(valorPago)
+            } else if(new BigInteger(valorPago) > credito.valorCuota){
+                //Buscar las cuotas del credito y ir pagando hasta que se acabe el llete
+                def disponible = new BigInteger(valorPago)
+                def _break = false
+
+                credito.cuotas.sort{ it.numero }.each{ c ->
+                    if(!c.pagada && !_break){
+
+                        def valorMaximoPago = c.valor
+                        if( (disponible - c.valor) < 0 ){
+                            valorMaximoPago = disponible
+                            disponible = 0
+                            _break = true
+                            c.valorPago = disponible
+                            c.fechaPago = new Date()
+                            c.save(flush: true, failOnError: true)
+                        } else {
+                            disponible -= c.valor
+                            c.valorPago = c.valor
+                            c.fechaPago = new Date()
+                            c.pagada = true
+                            c.save(flush: true, failOnError: true)
+                        }
+                    }
+                }
+            }
+        }
+
         credito.save(flush: true, failOnError:true)
 
         flash.message="El pago se ingreso correctamente"

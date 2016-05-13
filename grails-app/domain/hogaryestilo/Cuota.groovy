@@ -8,6 +8,7 @@ class Cuota {
     BigInteger valor
     Boolean pagada
     Date fechaPago
+    BigInteger valorPago
 
     static constraints = {
         numero nullable: false
@@ -16,5 +17,6 @@ class Cuota {
         valor nullable: false
         pagada nullable: false, default: false
         fechaPago nullable: true
+        valorPago nullable: true
     }
 }

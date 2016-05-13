@@ -45,6 +45,10 @@
             <g:select name="cuota" from="${ credito.cuotas.findAll{!it.pagada} }.sort{it.numero}" required="true" optionKey="id" optionValue="numero"/>
             <input type="hidden" name="valor" value="${credito.saldo<credito.valorCuota?credito.saldo:credito.valorCuota}"/>
         </div>
+        <div class="fieldcontain">
+            <label for="valorPago">Valor Pago</label>
+            <input name="valorPago" value="${credito.valorCuota}" type="number"/>
+        </div>
     </fieldset>
     <fieldset class="buttons">
         <g:if test="${credito.saldo > 0}">
