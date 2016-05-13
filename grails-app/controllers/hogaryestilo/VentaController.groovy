@@ -60,6 +60,26 @@ class VentaController {
         calcularTotal(venta)
         productoService.calcularCantidad(venta)
         venta.save(flush: true, failOnError: true)
+
+        // Crear credito de una cuota
+        def credito = Credito.findOrCreateByVenta(venta)
+        credito.fecha = venta.fecha
+        credito.numeroCuotas = 1
+        credito.total = venta.total
+        credito.valorCuota = venta.total
+        credito.saldo = 0
+        credito.save(flush: true, failOnError: true)
+
+        // Crear cuota
+        def cuota = new Cuota()
+        cuota.credito = credito
+        cuota.numero = 1
+        cuota.fecha = venta.fecha
+        cuota.valor = venta.total
+        cuota.pagada = true
+        cuota.fechaPago = venta.fecha
+        cuota.save(flush: true, failOnError: true)
+
         flash.message = "Venta cerrada"
         redirect url: '/'
     }

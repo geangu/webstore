@@ -128,6 +128,7 @@ class PagoController {
             rows << [
                 credito: cuota.credito.id,
                 cuota: cuota.numero,
+                cuotas: cuota.credito.numeroCuotas,
                 documento: cuota.credito.venta.cliente.documento,
                 nombre: cuota.credito.venta.cliente.nombre,
                 valor: cuota.valor

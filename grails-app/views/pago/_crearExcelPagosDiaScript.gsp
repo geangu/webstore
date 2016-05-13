@@ -7,7 +7,7 @@
             data: null,
             success: function(data){
                 var array = typeof data != 'object' ? JSON.parse(data) : data;
-                var str = 'Credito;Cuota;Documento;Cliente;Valor;\r\n';
+                var str = 'Credito;Cuota;Cuotas;Documento;Cliente;Valor;\r\n';
                 for (var i = 0; i < array.length; i++) {
                     var line = '';
                     for (var index in array[i]) {

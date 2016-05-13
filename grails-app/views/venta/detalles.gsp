@@ -3,7 +3,7 @@
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><a class="list" onclick="crearExcelVentasDia()">Reporte Pagos del día</a></li>
+        <li><a class="list" onclick="crearExcelVentasDia()">Reporte Ventas del día</a></li>
         <g:if test="${venta.id}">
             <g:if test="${venta.tipo=='Contado'}">
                 <li><g:link controller="venta" action="cerrar" id="${venta.id}"><i class="fa fa-money"></i> Cerrar Venta </g:link></li>
