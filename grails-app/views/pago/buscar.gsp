@@ -41,8 +41,9 @@
             <input name="saldo" value="${credito.saldo}" type="number" readonly="true" disabled="true"/>
         </div>
         <div class="fieldcontain required">
-            <label for="fecha">Valor Pago</label>
-            <g:textField name="valor" value="${credito.saldo<credito.valorCuota?credito.saldo:credito.valorCuota}" />
+            <label for="fecha">Cuota</label>
+            <g:select name="cuota" from="${ credito.cuotas.findAll{!it.pagada} }.sort{it.numero}" required="true" optionKey="id" optionValue="numero"/>
+            <input type="hidden" name="valor" value="${credito.saldo<credito.valorCuota?credito.saldo:credito.valorCuota}"/>
         </div>
     </fieldset>
     <fieldset class="buttons">

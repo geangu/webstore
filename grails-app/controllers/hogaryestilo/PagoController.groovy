@@ -1,8 +1,9 @@
 package hogaryestilo
 
-import org.springframework.security.access.annotation.Secured
+import grails.transaction.Transactional
 import groovy.sql.Sql
 import java.util.concurrent.TimeUnit
+import org.springframework.security.access.annotation.Secured
 
 @Secured(['ROLE_ADMIN','ROLE_USER'])
 class PagoController {
@@ -34,16 +35,14 @@ class PagoController {
         }
     }
 
+    @Transactional
     def crear(){
-        def credito = Credito.get(params.creditoId)
-        def pago = new Pago(
-            credito: credito,
-            tipoPago: 'Cuota',
-            valor: new BigInteger(params.valor),
-            fecha: new Date()
-        )
-        pago.save(flush: true, failOnError:true)
 
+        def cuota = Cuota.get(params.cuota)
+        cuota.pagada = true
+        cuota.fechaPago = new Date()
+
+        def credito = cuota.credito
         credito.saldo -= new BigInteger(params.valor)
 
         if(credito.saldo < 0){
@@ -52,6 +51,7 @@ class PagoController {
             return
         }
 
+        cuota.save( flush: true, failOnError: true)
         credito.save(flush: true, failOnError:true)
 
         flash.message="El pago se ingreso correctamente"
@@ -66,8 +66,8 @@ class PagoController {
     def morosos(){
 
         def query = """
-            select credito_id id, max(fecha) fecha
-            from pago
+            select credito_id id, min(fecha) fecha
+            from cuota
             where credito_id in (
             	select id from credito where saldo > 0
             )
@@ -76,8 +76,8 @@ class PagoController {
 
         if( params.zona ){
             query = """
-                select p.credito_id id, max(p.fecha) fecha
-                from pago p
+                select p.credito_id id, min(p.fecha) fecha
+                from cuota p
                 inner join credito c on c.id = p.credito_id
                 inner join venta v on v.id = c.venta_id
                 inner join cliente cl on cl.id = v.cliente_id

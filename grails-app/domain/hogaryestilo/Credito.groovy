@@ -4,18 +4,18 @@ class Credito {
 
     Date fecha
     Venta venta
-    Integer cuotas
+    Integer numeroCuotas
     BigInteger total
     BigInteger valorCuota
     BigInteger saldo
 
     static belongsTo = [ venta: Venta ]
-    static hasMany = [ pagos: Pago ]
+    static hasMany = [ cuotas: Cuota ]
 
     static constraints = {
         fecha nullable: false
         venta nullable: false, unique: true
-        cuotas nullable: false, min: 1, max: 24
+        numeroCuotas nullable: false, min: 1, max: 24
         total nullable: false
         valorCuota nullable: false
         saldo nullable: false

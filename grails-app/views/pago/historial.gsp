@@ -31,18 +31,20 @@
 
     <table style="width: 90%; margin: 1em auto; border: 1px solid lightgray;">
         <thead>
-            <th>Item</th>
-            <th>Fecha</th>
-            <th>Tipo Pago</th>
+            <th>Cuota</th>
+            <th>Fecha Cuota</th>
+            <th>Fecha Pago</th>
             <th>Valor</th>
         </thead>
         <tbody>
-            <g:each var="pago" in="${credito.pagos.sort{it.fecha}}" status="i">
+            <g:each var="cuota" in="${credito.cuotas.sort{it.numero}}" status="i">
                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                    <td>${i+1}</td>
-                    <td>${pago.fecha.format('yyyy-MM-dd HH:mm:ss a')}</td>
-                    <td>${pago.tipoPago}</td>
-                    <td style="text-align: right;"><g:formatNumber number="${pago.valor}" format="\$###,##0" /></td>
+                    <td>${cuota.numero}</td>
+                    <td>${cuota.fecha.format('yyyy-MM-dd')}</td>
+                    <td>${cuota.fechaPago?.format('yyyy-MM-dd')}</td>
+                    <td style="text-align: right;">
+                        <g:formatNumber number="${cuota.valor}" format="\$###,##0" />
+                    </td>
                 </tr>
             </g:each>
         </tbody>
