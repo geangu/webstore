@@ -15,8 +15,8 @@
         </div>
     </fieldset>
     <fieldset class="buttons">
-        <a href="#" onclick="crearExcel()" name="search" class="search">Buscar</a>
+        <a href="#" onclick="crearExcelMorosos()" name="search" class="search">Buscar</a>
     </fieldset>
 </g:form>
 
-<g:render template="crearExcelScript" />
+<g:render template="crearExcelMororos" />

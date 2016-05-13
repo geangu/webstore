@@ -117,4 +117,22 @@ class PagoController {
 
         render rows as grails.converters.JSON
     }
+
+    def pagosDia(){
+        def query = "select id from cuota where DATE(fecha_pago) = CURDATE()"
+        def sql = new Sql(dataSource)
+
+        def rows = []
+        sql.rows( query ).each{
+            def cuota = Cuota.get(it.id)
+            rows << [
+                credito: cuota.credito.id,
+                cuota: cuota.numero,
+                documento: cuota.credito.venta.cliente.documento,
+                nombre: cuota.credito.venta.cliente.nombre,
+                valor: cuota.valor
+            ]
+        }
+        render rows as grails.converters.JSON
+    }
 }

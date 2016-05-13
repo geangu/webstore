@@ -1,12 +1,14 @@
 package hogaryestilo
 
 import org.springframework.security.access.annotation.Secured
+import groovy.sql.Sql
 
 @Secured(['ROLE_ADMIN','ROLE_USER'])
 class VentaController {
 
     def springSecurityService
     def productoService
+    def dataSource
 
     def guardar(){
         def venta = new Venta(
@@ -102,6 +104,26 @@ class VentaController {
     def imprimir(Venta venta){
         def credito = Credito.findByVenta(venta);
         [venta: venta, credito: credito]
+    }
+
+    def ventasDia(){
+        def query = "select id from venta where DATE(fecha) = CURDATE() and cerrada"
+        def sql = new Sql(dataSource)
+
+        def rows = []
+        sql.rows( query ).each{
+            def venta = Venta.get(it.id)
+            rows << [
+                venta: venta.id,
+                valor: venta.total,
+                vendedor: venta.vendedor.username,
+                tipo: venta.tipo,
+                documento: venta.cliente.documento,
+                nombre: venta.cliente.nombre,
+                observaciones: venta.observaciones
+            ]
+        }
+        render rows as grails.converters.JSON
     }
 
 }

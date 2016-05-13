@@ -1,19 +1,13 @@
 <script>
-    function crearExcel(){
-
-        var zona = $("#zona").val();
-        var params = null;
-        if(zona){
-            params = { zona: zona }
-        }
+    function crearExcelPagosDia(){
 
         $.ajax({
-            url: '${createLink(controller: "pago", action:"morosos")}',
+            url: '${createLink(controller: "pago", action:"pagosDia")}',
             method: 'post',
-            data: params,
+            data: null,
             success: function(data){
                 var array = typeof data != 'object' ? JSON.parse(data) : data;
-                var str = 'Documento;Nombre;Telefono;Direccion;Zona;Ultimo_Pago;Dias_Mora;\r\n';
+                var str = 'Credito;Cuota;Documento;Cliente;Valor;\r\n';
                 for (var i = 0; i < array.length; i++) {
                     var line = '';
                     for (var index in array[i]) {

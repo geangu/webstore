@@ -7,7 +7,8 @@
         <div class="nav" role="navigation">
             <ul>
                 <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><a class="list" onclick="crearExcel()">Reporte Morosos</a></li>
+                <li><a class="list" onclick="crearExcelPagosDia()">Reporte Pagos del día</a></li>
+                <li><a class="list" onclick="crearExcelMororos()">Reporte Morosos</a></li>
                 <li><a class="list" href="${createLink(controller: 'pago', action:'zona')}">Reporte Morosos por Zona</a></li>
             </ul>
         </div>
@@ -36,6 +37,7 @@
                 <g:submitButton name="search" class="search" value="${message(code: 'default.button.search.label', default: 'Buscar')}" />
             </fieldset>
         </g:form>
-        <g:render template="crearExcelScript" />
+        <g:render template="crearExcelMororosScript" />
+        <g:render template="crearExcelPagosDiaScript" />
     </body>
 </html>
