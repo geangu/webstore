@@ -24,7 +24,7 @@ class PagoController {
             def creditos = []
             ventas.each{ venta->
                 def c = Credito.findByVenta(venta)
-                if(c.saldo!=BigInteger.ZERO){
+                if(c!=null){
                     creditos << c
                 }
             }
@@ -41,39 +41,49 @@ class PagoController {
         def cuota = Cuota.get(params.cuota)
 
         def credito = cuota.credito
-        credito.saldo -= new BigInteger(params.valorPago)
+        def saldo = credito.saldo - new BigInteger(params.valorPago)
 
-        if(credito.saldo < 0){
+        if(saldo < 0){
             flash.message="No puedes ingresar un valor superior al saldo"
             redirect action:'buscar', params:params
             return
+        } else {
+            credito.saldo -= new BigInteger(params.valorPago)
         }
 
-        def valorPago = params.valorPago
+        def valorPago = new BigInteger(params.valorPago)
         if( valorPago ){
-            if(valorPago == credito.valorCuota){
+            if(valorPago == credito.valorCuota && cuota.valorPago == null){
                 cuota.pagada = true
                 cuota.fechaPago = new Date()
-                cuota.valorPago = new BigInteger(valorPago)
-            } else if(new BigInteger(valorPago) < credito.valorCuota){
-                cuota.valorPago = new BigInteger(valorPago)
-            } else if(new BigInteger(valorPago) > credito.valorCuota){
+                cuota.valorPago = valorPago
+                cuota.save(flush:true, failOnError: true)
+            } else if(valorPago < credito.valorCuota){
+                cuota.valorPago = cuota.valorPago?:BigDecimal.ZERO
+                cuota.valorPago += valorPago
+                if( cuota.valorPago == credito.valorCuota ) {
+                    cuota.pagada = true
+                    cuota.fechaPago = new Date()
+                }
+                cuota.save(flush:true, failOnError: true)
+            } else if(valorPago >= credito.valorCuota){
                 //Buscar las cuotas del credito y ir pagando hasta que se acabe el llete
-                def disponible = new BigInteger(valorPago)
+                def disponible = valorPago + (cuota.valorPago?:0)
                 def _break = false
+
+                println "Valor disponible inicial: " + disponible
 
                 credito.cuotas.sort{ it.numero }.each{ c ->
                     if(!c.pagada && !_break){
-
+                        println "disponible para cuota " + c.numero + ": " + disponible
                         def valorMaximoPago = c.valor
                         if( (disponible - c.valor) < 0 ){
                             valorMaximoPago = disponible
                             disponible = 0
                             _break = true
-                            c.valorPago = disponible
-                            c.fechaPago = new Date()
+                            c.valorPago = valorMaximoPago
                             c.save(flush: true, failOnError: true)
-                        } else {
+                        } else if ( (disponible - c.valor) > 0 ){
                             disponible -= c.valor
                             c.valorPago = c.valor
                             c.fechaPago = new Date()
@@ -88,7 +98,7 @@ class PagoController {
         credito.save(flush: true, failOnError:true)
 
         flash.message="El pago se ingreso correctamente"
-        redirect action:"index"
+        redirect action:"historial", params:[creditoId: credito.id]
     }
 
     def historial(){

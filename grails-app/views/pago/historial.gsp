@@ -4,6 +4,13 @@
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
         <li><a class="search" href="${createLink(action: 'index')}">Buscar</a></li>
+        <g:if test="${credito.saldo > 0}">
+            <li>
+                <a class="save" href="${createLink(action:'buscar',params:[creditoId:credito.id])}">
+                    <i class="fa fa-money"></i>  ${message(code: 'default.button.create.label')}
+                </a>
+            </li>
+        </g:if>
     </ul>
 </div>
 
@@ -33,17 +40,19 @@
         <thead>
             <th>Cuota</th>
             <th>Fecha Cuota</th>
-            <th>Fecha Pago</th>
             <th>Valor</th>
+            <th>Fecha Pago</th>
+            <th>Valor Pagado</th>
         </thead>
         <tbody>
             <g:each var="cuota" in="${credito.cuotas.sort{it.numero}}" status="i">
                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                     <td>${cuota.numero}</td>
                     <td>${cuota.fecha.format('yyyy-MM-dd')}</td>
+                    <td><g:formatNumber number="${cuota.valor}" format="\$###,##0" /></td>
                     <td>${cuota.fechaPago?.format('yyyy-MM-dd')}</td>
                     <td style="text-align: right;">
-                        <g:formatNumber number="${cuota.valor}" format="\$###,##0" />
+                        <g:formatNumber number="${cuota.valorPago}" format="\$###,##0" />
                     </td>
                 </tr>
             </g:each>
