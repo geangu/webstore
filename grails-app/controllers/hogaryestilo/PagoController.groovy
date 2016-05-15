@@ -70,12 +70,8 @@ class PagoController {
                 //Buscar las cuotas del credito y ir pagando hasta que se acabe el llete
                 def disponible = valorPago + (cuota.valorPago?:0)
                 def _break = false
-
-                println "Valor disponible inicial: " + disponible
-
                 credito.cuotas.sort{ it.numero }.each{ c ->
                     if(!c.pagada && !_break){
-                        println "disponible para cuota " + c.numero + ": " + disponible
                         def valorMaximoPago = c.valor
                         if( (disponible - c.valor) < 0 ){
                             valorMaximoPago = disponible

@@ -19,4 +19,4 @@
     </fieldset>
 </g:form>
 
-<g:render template="crearExcelMororos" />
+<g:render template="crearExcelMororosScript" />
