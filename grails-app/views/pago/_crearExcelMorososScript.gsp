@@ -1,5 +1,5 @@
 <script>
-    function crearExcelMororos(){
+    function crearExcelMorosos(){
 
         var zona = $("#zona").val();
         var params = null;
