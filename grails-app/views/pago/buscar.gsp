@@ -42,7 +42,7 @@
         </div>
         <div class="fieldcontain required">
             <label for="fecha">Cuota</label>
-            <g:select name="cuota" from="${ credito.cuotas.findAll{!it.pagada} }.sort{it.numero}" required="true" optionKey="id" optionValue="numero"/>
+            <g:select name="cuota" from="${ credito.cuotas.findAll{!it.pagada}.sort{it.numero} }" required="true" optionKey="id" optionValue="numero"/>
             <input type="hidden" name="valor" value="${credito.saldo<credito.valorCuota?credito.saldo:credito.valorCuota}"/>
         </div>
         <div class="fieldcontain">
