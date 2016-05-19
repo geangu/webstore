@@ -37,7 +37,7 @@
                 <g:submitButton name="search" class="search" value="${message(code: 'default.button.search.label', default: 'Buscar')}" />
             </fieldset>
         </g:form>
-        <g:render template="crearExcelMororosScript" />
+        <g:render template="crearExcelMorososScript" />
         <g:render template="crearExcelPagosDiaScript" />
     </body>
 </html>

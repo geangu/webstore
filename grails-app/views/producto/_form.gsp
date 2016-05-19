@@ -23,18 +23,27 @@
 <div class="fieldcontain ${hasErrors(bean: productoInstance, field: 'descripcion', 'error')} ">
 	<label for="descripcion">
 		<g:message code="producto.descripcion.label" default="Descripcion" />
-		
+
 	</label>
 	<g:textField name="descripcion" value="${productoInstance?.descripcion}"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: productoInstance, field: 'precio', 'error')} required">
-	<label for="precio">
-		<g:message code="producto.precio.label" default="Precio" />
+<div class="fieldcontain ${hasErrors(bean: productoInstance, field: 'precioCompra', 'error')} required">
+	<label for="precioCompra">
+		<g:message code="producto.precioCompra.label" default="Precio Compra" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="precio" type="number" value="${productoInstance.precio}" required=""/>
+	<g:field name="precioCompra" type="number" value="${productoInstance.precioCompra}" required=""/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: productoInstance, field: 'precioContado', 'error')} required">
+	<label for="precioContado">
+		<g:message code="producto.precioContado.label" default="Precio Contado" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:field name="precioContado" type="number" value="${productoInstance.precioContado}" required=""/>
 
 </div>
 
@@ -59,7 +68,7 @@
 <div class="fieldcontain ${hasErrors(bean: productoInstance, field: 'observaciones', 'error')} ">
 	<label for="observaciones">
 		<g:message code="producto.observaciones.label" default="Observaciones" />
-		
+
 	</label>
 	<g:textField name="observaciones" value="${productoInstance?.observaciones}"/>
 
@@ -82,4 +91,3 @@
 	<g:field name="vendidos" type="number" value="${productoInstance.vendidos}" required=""/>
 
 </div>
-

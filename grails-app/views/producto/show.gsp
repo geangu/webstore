@@ -22,88 +22,97 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list producto">
-			
+
 				<g:if test="${productoInstance?.referencia}">
 				<li class="fieldcontain">
 					<span id="referencia-label" class="property-label"><g:message code="producto.referencia.label" default="Referencia" /></span>
-					
+
 						<span class="property-value" aria-labelledby="referencia-label"><g:fieldValue bean="${productoInstance}" field="referencia"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${productoInstance?.nombre}">
 				<li class="fieldcontain">
 					<span id="nombre-label" class="property-label"><g:message code="producto.nombre.label" default="Nombre" /></span>
-					
+
 						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${productoInstance}" field="nombre"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${productoInstance?.descripcion}">
 				<li class="fieldcontain">
 					<span id="descripcion-label" class="property-label"><g:message code="producto.descripcion.label" default="Descripcion" /></span>
-					
+
 						<span class="property-value" aria-labelledby="descripcion-label"><g:fieldValue bean="${productoInstance}" field="descripcion"/></span>
-					
+
 				</li>
 				</g:if>
-			
-				<g:if test="${productoInstance?.precio}">
+
+				<g:if test="${productoInstance?.precioCompra}">
 				<li class="fieldcontain">
-					<span id="precio-label" class="property-label"><g:message code="producto.precio.label" default="Precio" /></span>
-					
-						<span class="property-value" aria-labelledby="precio-label"><g:fieldValue bean="${productoInstance}" field="precio"/></span>
-					
+					<span id="precioCompra-label" class="property-label"><g:message code="producto.precioCompra.label" default="Precio Compra" /></span>
+
+						<span class="property-value" aria-labelledby="precioCompra-label"><g:fieldValue bean="${productoInstance}" field="precioCompra"/></span>
+
 				</li>
 				</g:if>
-			
+
+				<g:if test="${productoInstance?.precioContado}">
+				<li class="fieldcontain">
+					<span id="precioContado-label" class="property-label"><g:message code="producto.precioContado.label" default="Precio Contado" /></span>
+
+						<span class="property-value" aria-labelledby="precioContado-label"><g:fieldValue bean="${productoInstance}" field="precioContado"/></span>
+
+				</li>
+				</g:if>
+
 				<g:if test="${productoInstance?.precioCredito}">
 				<li class="fieldcontain">
 					<span id="precioCredito-label" class="property-label"><g:message code="producto.precioCredito.label" default="Precio Credito" /></span>
-					
+
 						<span class="property-value" aria-labelledby="precioCredito-label"><g:fieldValue bean="${productoInstance}" field="precioCredito"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${productoInstance?.categoria}">
 				<li class="fieldcontain">
 					<span id="categoria-label" class="property-label"><g:message code="producto.categoria.label" default="Categoria" /></span>
-					
+
 						<span class="property-value" aria-labelledby="categoria-label"><g:link controller="categoria" action="show" id="${productoInstance?.categoria?.id}">${productoInstance?.categoria?.encodeAsHTML()}</g:link></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${productoInstance?.observaciones}">
 				<li class="fieldcontain">
 					<span id="observaciones-label" class="property-label"><g:message code="producto.observaciones.label" default="Observaciones" /></span>
-					
+
 						<span class="property-value" aria-labelledby="observaciones-label"><g:fieldValue bean="${productoInstance}" field="observaciones"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${productoInstance?.almacen}">
 				<li class="fieldcontain">
 					<span id="almacen-label" class="property-label"><g:message code="producto.almacen.label" default="Almacen" /></span>
-					
+
 						<span class="property-value" aria-labelledby="almacen-label"><g:fieldValue bean="${productoInstance}" field="almacen"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 				<g:if test="${productoInstance?.vendidos}">
 				<li class="fieldcontain">
 					<span id="vendidos-label" class="property-label"><g:message code="producto.vendidos.label" default="Vendidos" /></span>
-					
+
 						<span class="property-value" aria-labelledby="vendidos-label"><g:fieldValue bean="${productoInstance}" field="vendidos"/></span>
-					
+
 				</li>
 				</g:if>
-			
+
 			</ol>
 			<g:form url="[resource:productoInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">

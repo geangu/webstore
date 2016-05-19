@@ -5,8 +5,9 @@ class Producto {
     String referencia
     String nombre
     String descripcion
-    BigInteger precio
+    BigInteger precioContado
     BigInteger precioCredito
+    BigInteger precioCompra
     String observaciones
 
     Integer almacen
@@ -18,8 +19,9 @@ class Producto {
         referencia nullable: false, unique: true
         nombre nullable: false
         descripcion nullable: true
-        precio nullable: false
+        precioContado nullable: false
         precioCredito nullable: false
+        precioCompra nullable: false
         categoria nullable: false
         observaciones nullable: true
         almacen nullable: false, default: 0
