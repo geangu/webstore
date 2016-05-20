@@ -25,7 +25,7 @@
 	</head>
 	<body>
 		<div id="grailsLogo" role="banner"><a href="${resource(file:'/')}"><asset:image src="grails_logo.png" alt="Hogar y Estilo"/></a></div>
-		
+
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo">
 			Developed by
@@ -33,8 +33,10 @@
 		</div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<asset:javascript src="select2.min.js"/>
+		<asset:javascript src="zebra_datepicker.js"/>
 		<script>
 			$('select').select2();
+			$('input[type="date"]').Zebra_DatePicker();
 		</script>
 	</body>
 </html>

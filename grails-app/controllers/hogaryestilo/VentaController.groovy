@@ -14,7 +14,7 @@ class VentaController {
         def venta = new Venta(
             vendedor: Usuario.get(springSecurityService.principal.id),
             cliente: Cliente.get(params.clienteId),
-            fecha: new Date(),
+            fecha: new Date().parse('yyyy-MM-dd', params.fecha),
             tipo: params.tipo,
             observations: params.observations,
             cuotas: 1,
@@ -99,7 +99,7 @@ class VentaController {
         venta.total = 0;
         detalles.each{ d->
             if( venta.tipo == 'Contado' ){
-                venta.total += (d.producto.precio * d.cantidad)
+                venta.total += (d.producto.precioContado * d.cantidad)
             } else {
                 venta.total += (d.producto.precioCredito * d.cantidad)
             }

@@ -84,7 +84,7 @@
         </thead>
         <tbody>
             <g:each var="d" in="${venta.detalles}" status="i">
-                <g:set var="precio">${venta.tipo=='Contado'?d.producto.precio:d.producto.precioCredito}</g:set>
+                <g:set var="precio">${venta.tipo=='Contado'?d.producto.precioContado:d.producto.precioCredito}</g:set>
                 <tr>
                     <td>${i+1}</td>
                     <td>${d.producto}</td>
@@ -107,6 +107,15 @@
 <g:else>
     <g:form controller="venta" action="guardar">
         <fieldset class="form">
+
+            <div class="fieldcontain required">
+                <label for="fecha">
+                    <g:message code="venta.fecha.label" default="Tipo" />
+                    <span class="required-indicator">*</span>
+                </label>
+                <input type="date" name="fecha" value="${new Date().format('yyyy-MM-dd')}">
+            </div>
+
             <div class="fieldcontain required">
                 <label for="tipo">
                     <g:message code="venta.tipo.label" default="Tipo" />

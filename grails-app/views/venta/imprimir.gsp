@@ -42,7 +42,7 @@
     </thead>
     <tbody>
         <g:each var="d" in="${venta.detalles}" status="i">
-            <g:set var="precio">${venta.tipo=='Contado'?d.producto.precio:d.producto.precioCredito}</g:set>
+            <g:set var="precio">${venta.tipo=='Contado'?d.producto.precioContado:d.producto.precioCredito}</g:set>
             <tr>
                 <td>${i+1}</td>
                 <td>${d.producto}</td>
