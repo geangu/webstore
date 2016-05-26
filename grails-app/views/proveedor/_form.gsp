@@ -47,6 +47,24 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: proveedorInstance, field: 'banco', 'error')} required">
+	<label for="banco">
+		<g:message code="proveedor.banco.label" default="Banco" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="banco" required="" value="${proveedorInstance?.banco}"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: proveedorInstance, field: 'numeroCuenta', 'error')} required">
+	<label for="numeroCuenta">
+		<g:message code="proveedor.numeroCuenta.label" default="Numero Cuenta" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="numeroCuenta" required="" value="${proveedorInstance?.numeroCuenta}"/>
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: proveedorInstance, field: 'observaciones', 'error')} ">
 	<label for="observaciones">
 		<g:message code="proveedor.observaciones.label" default="Observaciones" />

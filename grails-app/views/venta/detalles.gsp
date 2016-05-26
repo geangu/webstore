@@ -8,7 +8,7 @@
             <g:if test="${venta.tipo=='Contado'}">
                 <li><g:link controller="venta" action="cerrar" id="${venta.id}"><i class="fa fa-money"></i> Cerrar Venta </g:link></li>
             </g:if>
-            <g:if test="${venta.tipo=='Crédito'}">
+            <g:if test="${venta.tipo=='Crédito'||venta.tipo=='Credicontado'}">
                 <li><g:link controller="venta" action="credito" id="${venta.id}"><i class="fa fa-money"></i> Crear Crédito </g:link></li>
             </g:if>
             <li><g:link controller="venta" action="descartar" id="${venta.id}"><i class="fa fa-trash"></i> Descartar Venta </g:link></li>
@@ -19,6 +19,10 @@
 <g:if test="${venta.id}">
 
     <table>
+        <tr>
+            <td style="text-align:right;"><strong>Orden</strong></td>
+            <td>${venta.orden}</td>
+        </tr>
         <tr>
             <td style="text-align:right;"><strong>Fecha</strong></td>
             <td>${venta.fecha.format('yyyy-MM-dd')}</td>
@@ -84,7 +88,7 @@
         </thead>
         <tbody>
             <g:each var="d" in="${venta.detalles}" status="i">
-                <g:set var="precio">${venta.tipo=='Contado'?d.producto.precioContado:d.producto.precioCredito}</g:set>
+                <g:set var="precio">${venta.tipo=='Contado' || venta.tipo=='Credicontado'?d.producto.precioContado:d.producto.precioCredito}</g:set>
                 <tr>
                     <td>${i+1}</td>
                     <td>${d.producto}</td>
@@ -107,6 +111,14 @@
 <g:else>
     <g:form controller="venta" action="guardar">
         <fieldset class="form">
+
+            <div class="fieldcontain required">
+                <label for="orden">
+                    <g:message code="venta.orden.label" default="Orden" />
+                    <span class="required-indicator">*</span>
+                </label>
+                <input type="number" name="orden">
+            </div>
 
             <div class="fieldcontain required">
                 <label for="fecha">

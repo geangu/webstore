@@ -17,14 +17,14 @@
         </g:if>
         <g:form controller="pago" action="buscar">
             <div style="margin-left: 2em;">
-                <h1>Buscar por número de pago o cedula de cliente</h1>
+                <h1>Buscar por número de orden o cedula de cliente</h1>
             </div>
             <fieldset class="form">
                 <div class="fieldcontain">
-                    <label for="creditoId">
-                        Código de pago
+                    <label for="orden">
+                        Número de Orden
                     </label>
-                    <g:textField name="creditoId" value="" />
+                    <g:textField name="orden" value="" />
                 </div>
                 <div class="fieldcontain">
                     <label for="cedula">

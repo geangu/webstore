@@ -16,6 +16,12 @@ class PagoController {
 
     def buscar(){
         def credito = Credito.get(params.creditoId)
+
+        if(credito == null && params.orden){
+            def venta = Venta.findByOrden(params.orden)
+            credito = Credito.findByVenta(venta)
+        }
+
         if(credito){
             [credito: credito, cliente: credito.venta.cliente]
         } else if(params.cedula){

@@ -29,8 +29,8 @@
     <fieldset class="form">
         <input type="hidden" name="creditoId" value="${credito.id}"/>
         <div class="fieldcontain">
-            <label for="creditoIdRead">Número Crédito</label>
-            <input name="creditoIdRead" value="${credito.id}" type="number" readonly="true" disabled="true"/>
+            <label for="creditoIdRead">Número Orden</label>
+            <input name="creditoIdRead" value="${credito.venta.orden}" type="number" readonly="true" disabled="true"/>
         </div>
         <div class="fieldcontain">
             <label for="total">Total Crédito</label>

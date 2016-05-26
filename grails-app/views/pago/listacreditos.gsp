@@ -24,7 +24,7 @@
 <table>
     <thead>
         <tr>
-            <th>Numero Crédito</th>
+            <th>Numero Orden</th>
             <th>Fecha</th>
             <th>Saldo</th>
             <th>Acciones</th>
@@ -33,7 +33,7 @@
     <tbody>
         <g:each var="credito" in="${creditos}">
             <tr>
-                <td>${credito.id}</td>
+                <td>${credito.venta.orden}</td>
                 <td>${credito.fecha}</td>
                 <td>${credito.saldo}</td>
                 <td>

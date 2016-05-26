@@ -2,6 +2,7 @@ package hogaryestilo
 
 class Venta {
 
+    String orden
     Date fecha
     String tipo
     Usuario vendedor
@@ -14,8 +15,9 @@ class Venta {
     static hasMany = [detalles:DetalleVenta]
 
     static constraints = {
+        orden nullable: false, unique: true
         fecha nullable: false
-        tipo nullable: false, inList:['Contado','Crédito']
+        tipo nullable: false, inList:['Contado','Credicontado','Crédito']
         vendedor nullable: false
         cliente nullable: false
         observaciones nullable: true

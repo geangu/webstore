@@ -19,8 +19,8 @@
     <fieldset class="form">
         <input type="hidden" name="creditoId" value="${credito.id}"/>
         <div class="fieldcontain">
-            <label for="credito">Número Credito</label>
-            <input name="credito" value="${credito.id}" type="text" readonly="true" disabled="true"/>
+            <label for="credito">Número Orden</label>
+            <input name="credito" value="${credito.venta.orden}" type="text" readonly="true" disabled="true"/>
         </div>
         <div class="fieldcontain">
             <label for="cliente">Cliente</label>

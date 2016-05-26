@@ -7,6 +7,8 @@ class Proveedor {
     String telefono
     String direccion
     String encargado
+    String banco
+    String numeroCuenta
     String observaciones
 
     static constraints = {
@@ -15,6 +17,8 @@ class Proveedor {
         telefono nullable: false
         direccion nullable: false
         encargado nullable: false
+        banco nullable: false
+        numeroCuenta nullable: false
         observaciones nullable: true
     }
 
@@ -22,5 +26,4 @@ class Proveedor {
     String toString(){
         razonSocial
     }
-
 }

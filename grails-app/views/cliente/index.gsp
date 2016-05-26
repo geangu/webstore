@@ -15,6 +15,7 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="list" action="index" controller="fiador">Fiadores</g:link></li>
 				<li><filterpane:filterButton/></li>
 			</ul>
 		</div>
@@ -25,13 +26,14 @@
 			</g:if>
 			<filterpane:filterPane domain="Cliente"/>
 			<table>
-			<thead>
+				<thead>
 					<tr>
 						<g:sortableColumn property="documento" title="${message(code: 'cliente.documento.label', default: 'Documento')}" />
 						<g:sortableColumn property="nombre" title="${message(code: 'cliente.nombre.label', default: 'Nombre')}" />
 						<g:sortableColumn property="telefono" title="${message(code: 'cliente.telefono.label', default: 'Telefono')}" />
 						<g:sortableColumn property="direccion" title="${message(code: 'cliente.direccion.label', default: 'Direccion')}" />
 						<th><g:message code="cliente.zona.label" default="Zona" /></th>
+						<th><g:message code="cliente.fiador.label" default="Fiador" /></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,6 +44,7 @@
 						<td>${fieldValue(bean: clienteInstance, field: "telefono")}</td>
 						<td>${fieldValue(bean: clienteInstance, field: "direccion")}</td>
 						<td>${fieldValue(bean: clienteInstance, field: "zona")}</td>
+						<td>${fieldValue(bean: clienteInstance, field: "fiador")}</td>
 					</tr>
 				</g:each>
 				</tbody>

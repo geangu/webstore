@@ -15,7 +15,7 @@
 			<ul>
 				<sec:ifAllGranted roles="ROLE_ADMIN">
 					<li><g:link controller="user"><i class="fa fa-user-plus"></i> Usuarios</g:link></li>
-					<!-- <li><g:link controller="proveedor"><i class="fa fa-truck"></i> Proveedores</g:link></li> -->
+					<li><g:link controller="proveedor"><i class="fa fa-truck"></i> Proveedores</g:link></li>
 					<li><g:link controller="categoria"><i class="fa fa-building"></i> Categoria</g:link></li>
 					<li><g:link controller="producto"><i class="fa fa-clone"></i> Productos</g:link></li>
 					<li><g:link controller="zona"><i class="fa fa-map-marker"></i> Zona</g:link></li>

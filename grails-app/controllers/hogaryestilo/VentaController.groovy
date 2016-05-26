@@ -12,6 +12,7 @@ class VentaController {
 
     def guardar(){
         def venta = new Venta(
+            orden: params.orden,
             vendedor: Usuario.get(springSecurityService.principal.id),
             cliente: Cliente.get(params.clienteId),
             fecha: new Date().parse('yyyy-MM-dd', params.fecha),
@@ -98,7 +99,7 @@ class VentaController {
         def detalles = DetalleVenta.findAllByVenta(venta)
         venta.total = 0;
         detalles.each{ d->
-            if( venta.tipo == 'Contado' ){
+            if( venta.tipo == 'Contado' || venta.tipo == 'Credicontado'){
                 venta.total += (d.producto.precioContado * d.cantidad)
             } else {
                 venta.total += (d.producto.precioCredito * d.cantidad)

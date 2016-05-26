@@ -22,52 +22,42 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list cliente">
-			
 				<g:if test="${clienteInstance?.documento}">
-				<li class="fieldcontain">
-					<span id="documento-label" class="property-label"><g:message code="cliente.documento.label" default="Documento" /></span>
-					
+					<li class="fieldcontain">
+						<span id="documento-label" class="property-label"><g:message code="cliente.documento.label" default="Documento" /></span>
 						<span class="property-value" aria-labelledby="documento-label"><g:fieldValue bean="${clienteInstance}" field="documento"/></span>
-					
-				</li>
+					</li>
 				</g:if>
-			
 				<g:if test="${clienteInstance?.nombre}">
-				<li class="fieldcontain">
-					<span id="nombre-label" class="property-label"><g:message code="cliente.nombre.label" default="Nombre" /></span>
-					
+					<li class="fieldcontain">
+						<span id="nombre-label" class="property-label"><g:message code="cliente.nombre.label" default="Nombre" /></span>
 						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${clienteInstance}" field="nombre"/></span>
-					
-				</li>
+					</li>
 				</g:if>
-			
 				<g:if test="${clienteInstance?.telefono}">
-				<li class="fieldcontain">
-					<span id="telefono-label" class="property-label"><g:message code="cliente.telefono.label" default="Telefono" /></span>
-					
+					<li class="fieldcontain">
+						<span id="telefono-label" class="property-label"><g:message code="cliente.telefono.label" default="Telefono" /></span>
 						<span class="property-value" aria-labelledby="telefono-label"><g:fieldValue bean="${clienteInstance}" field="telefono"/></span>
-					
-				</li>
+					</li>
 				</g:if>
-			
 				<g:if test="${clienteInstance?.direccion}">
-				<li class="fieldcontain">
-					<span id="direccion-label" class="property-label"><g:message code="cliente.direccion.label" default="Direccion" /></span>
-					
+					<li class="fieldcontain">
+						<span id="direccion-label" class="property-label"><g:message code="cliente.direccion.label" default="Direccion" /></span>
 						<span class="property-value" aria-labelledby="direccion-label"><g:fieldValue bean="${clienteInstance}" field="direccion"/></span>
-					
-				</li>
+					</li>
 				</g:if>
-			
 				<g:if test="${clienteInstance?.zona}">
-				<li class="fieldcontain">
-					<span id="zona-label" class="property-label"><g:message code="cliente.zona.label" default="Zona" /></span>
-					
+					<li class="fieldcontain">
+						<span id="zona-label" class="property-label"><g:message code="cliente.zona.label" default="Zona" /></span>
 						<span class="property-value" aria-labelledby="zona-label"><g:link controller="zona" action="show" id="${clienteInstance?.zona?.id}">${clienteInstance?.zona?.encodeAsHTML()}</g:link></span>
-					
-				</li>
+					</li>
 				</g:if>
-			
+				<g:if test="${clienteInstance?.fiador}">
+					<li class="fieldcontain">
+						<span id="fiador-label" class="property-label"><g:message code="cliente.fiador.label" default="Fiador" /></span>
+						<span class="property-value" aria-labelledby="fiador-label"><g:link controller="fiador" action="show" id="${clienteInstance?.fiador?.id}">${clienteInstance?.fiador?.encodeAsHTML()}</g:link></span>
+					</li>
+				</g:if>
 			</ol>
 			<g:form url="[resource:clienteInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">

@@ -68,6 +68,24 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${proveedorInstance?.banco}">
+				<li class="fieldcontain">
+					<span id="banco-label" class="property-label"><g:message code="proveedor.banco.label" default="Banco" /></span>
+					
+						<span class="property-value" aria-labelledby="banco-label"><g:fieldValue bean="${proveedorInstance}" field="banco"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${proveedorInstance?.numeroCuenta}">
+				<li class="fieldcontain">
+					<span id="numeroCuenta-label" class="property-label"><g:message code="proveedor.numeroCuenta.label" default="Numero Cuenta" /></span>
+					
+						<span class="property-value" aria-labelledby="numeroCuenta-label"><g:fieldValue bean="${proveedorInstance}" field="numeroCuenta"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${proveedorInstance?.observaciones}">
 				<li class="fieldcontain">
 					<span id="observaciones-label" class="property-label"><g:message code="proveedor.observaciones.label" default="Observaciones" /></span>

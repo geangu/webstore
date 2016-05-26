@@ -12,6 +12,7 @@ import static org.springframework.http.HttpStatus.*
 class ClienteController {
 
     def dataSource
+    def filterPaneService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 

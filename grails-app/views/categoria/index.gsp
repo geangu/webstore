@@ -24,7 +24,7 @@
 			</g:if>
 			<div>
 				<p>
-					<filterpane:filterPane domain="Producto" excludeProperties="precio,precioCredito,observaciones"/>
+					<filterpane:filterPane domain="Categoria"/>
 				</p>
 			</div>
 			<table>

@@ -1,5 +1,5 @@
 <p style="font-size: 1.3em; text-align: center;">
-    Su número para pagos es: <strong>${credito?.id}</strong>
+    Su número para pagos es: <strong>${venta?.orden}</strong>
 </p>
 <br>
 <br>
@@ -42,7 +42,7 @@
     </thead>
     <tbody>
         <g:each var="d" in="${venta.detalles}" status="i">
-            <g:set var="precio">${venta.tipo=='Contado'?d.producto.precioContado:d.producto.precioCredito}</g:set>
+            <g:set var="precio">${venta.tipo=='Contado'||venta.tipo=='Credicontado'?d.producto.precioContado:d.producto.precioCredito}</g:set>
             <tr>
                 <td>${i+1}</td>
                 <td>${d.producto}</td>
