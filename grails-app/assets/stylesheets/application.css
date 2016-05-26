@@ -7,13 +7,11 @@
 * You're free to add application-wide styles to this file and they'll appear at the top of the
 * compiled file, but it's generally better to create a new file per style scope.
 *
-*= require main
-*= require mobile
 *= require_self
 */
 @import url(https://fonts.googleapis.com/css?family=Coustard);
 
-h1.title {
+h1,h2,h3,h4,h5,h6 {
     font-family: 'Coustard', serif;
     font-size: 2em;
 }
@@ -46,10 +44,6 @@ div#filterPane .buttons {
     display: block;
     padding: 0.4em;
     width: 100%;
-}
-
-#login{
-
 }
 
 /*

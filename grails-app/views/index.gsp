@@ -11,29 +11,7 @@
 		</style>
 	</head>
 	<body>
-		<div class="nav" role="navigation">
-			<ul>
-				<sec:ifAllGranted roles="ROLE_ADMIN">
-					<li><g:link controller="user"><i class="fa fa-user-plus"></i> Usuarios</g:link></li>
-					<li><g:link controller="proveedor"><i class="fa fa-truck"></i> Proveedores</g:link></li>
-					<li><g:link controller="categoria"><i class="fa fa-building"></i> Categoria</g:link></li>
-					<li><g:link controller="producto"><i class="fa fa-clone"></i> Productos</g:link></li>
-					<li><g:link controller="zona"><i class="fa fa-map-marker"></i> Zona</g:link></li>
-				</sec:ifAllGranted>
 
-				<li><g:link controller="cliente"><i class="fa fa-users"></i> Clientes</g:link></li>
-				<li><g:link controller="pago"><i class="fa fa-money"></i> Pago</g:link></li>
-
-				<sec:ifAllGranted roles="ROLE_ADMIN">
-					<li><g:link controller="venta" action="detalles"><i class="fa fa-th-list"></i> Ventas </g:link></li>
-				</sec:ifAllGranted>
-				<sec:ifAllGranted roles="ROLE_USER">
-					<li><g:link controller="venta" action="detalles"><i class="fa fa-shopping-bag"></i> Ventas </g:link></li>
-				</sec:ifAllGranted>
-
-				<li><a href="#" onclick="location.href='${createLink(controller:'logout')}';"><i class="fa fa-sign-out"></i> Salir</a></li>
-			</ul>
-		</div>
 
 		<div class="home">
 			<h1 class="title">Bienvenido <sec:username /></h1>

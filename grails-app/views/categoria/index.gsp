@@ -9,23 +9,17 @@
 		<asset:stylesheet src="fp.css"/>
 	</head>
 	<body>
-		<a href="#list-categoria" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-				<li><filterpane:filterButton/></li>
-			</ul>
-		</div>
+
+		<filterpane:filterButton/>
+
 		<div id="list-categoria" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+			<h3><g:message code="default.list.label" args="[entityName]" /></h3>
+			<hr>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<div>
-				<p>
-					<filterpane:filterPane domain="Categoria"/>
-				</p>
+				<filterpane:filterPane domain="Categoria"/>
 			</div>
 			<table>
 				<thead>
@@ -43,9 +37,18 @@
 				</g:each>
 				</tbody>
 			</table>
+
 			<div class="pagination">
 				<g:paginate total="${categoriaInstanceCount ?: 0}" />
 			</div>
+
 		</div>
+
+		<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+			<g:link class="btn-floating btn-large red waves-effect" action="create">
+				<i class="fa fa-plus" aria-hidden="true"></i>
+			</g:link>
+		</div>
+
 	</body>
 </html>

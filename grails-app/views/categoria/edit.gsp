@@ -7,16 +7,9 @@
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#edit-categoria" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
 		<div id="edit-categoria" class="content scaffold-edit" role="main">
-			<h1><g:message code="default.edit.label" args="[entityName]" /></h1>
+			<h3><g:message code="default.edit.label" args="[entityName]" /></h3>
+			<hr>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -29,13 +22,14 @@
 			</g:hasErrors>
 			<g:form url="[resource:categoriaInstance, action:'update']" method="PUT" >
 				<g:hiddenField name="version" value="${categoriaInstance?.version}" />
-				<fieldset class="form">
-					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="buttons">
-					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-				</fieldset>
+				<g:render template="form"/>
+				<button type="submit" class="btn waves-effect right">
+					<i class="fa fa-floppy-o" aria-hidden="true"></i> ${message(code: 'default.button.update.label', default: 'Update')}
+				</button>
 			</g:form>
+		</div>
+		<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+			<g:link action="index" class="btn-floating waves-effect btn-large red"><i class="fa fa-list" aria-hidden="true"></i></g:link>
 		</div>
 	</body>
 </html>

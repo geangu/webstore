@@ -9,6 +9,8 @@ import static org.springframework.http.HttpStatus.*
 @Secured(['ROLE_ADMIN'])
 class CategoriaController {
 
+    def filterPaneService
+
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
