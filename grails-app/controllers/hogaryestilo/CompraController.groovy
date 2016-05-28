@@ -1,6 +1,8 @@
 package hogaryestilo
 
 import grails.transaction.Transactional
+import groovy.sql.Sql
+import java.util.concurrent.TimeUnit
 import org.springframework.security.access.annotation.Secured
 import static org.springframework.http.HttpStatus.*
 
@@ -8,6 +10,7 @@ import static org.springframework.http.HttpStatus.*
 @Secured(['ROLE_ADMIN'])
 class CompraController {
 
+    def dataSource
     def fechaService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -163,6 +166,32 @@ class CompraController {
             }
         }
         redirect action: 'pagos', id: compraInstance.id
+    }
+
+    def pagosMora(){
+        def query = """
+            select compra_id id, min(fecha) fecha
+            from pago
+            where
+            compra_id in (
+                select id from compra where saldo > 0
+            ) and
+            pagado = false
+            group by compra_id"""
+
+        def sql = new Sql(dataSource)
+        def cantidad = 0
+        sql.rows( query ).each{
+            def compra = Compra.get(it.id)
+            def dias_mora = TimeUnit.DAYS.convert(
+                new Date().getTime() - it.fecha.getTime(),
+                TimeUnit.MILLISECONDS
+            )
+            if(dias_mora > 30 && compra.saldo > BigInteger.ZERO){
+                cantidad++
+            }
+        }
+        render cantidad
     }
 
 }

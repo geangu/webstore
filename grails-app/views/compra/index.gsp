@@ -41,7 +41,6 @@
 						<td>${fieldValue(bean: compraInstance, field: "total")}</td>
 						<td>${fieldValue(bean: compraInstance, field: "numeroCuotas")}</td>
 						<td>
-							<g:link action="show" id="${compraInstance.id}">Ver</g:link>
 							<g:link action="pagos" id="${compraInstance.id}">Pagos</g:link>
 						</td>
 					</tr>

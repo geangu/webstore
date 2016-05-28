@@ -48,7 +48,7 @@
 				</script>
 			</g:if>
 		</g:each>
-		<g:set var="pagosMora"><g:include controller="compras" action="pagosMora"/></g:set>
+		<g:set var="pagosMora"><g:include controller="compra" action="pagosMora"/></g:set>
 		<g:if test="${pagosMora!='0'}">
 			<script>
 				$.notify("A la fecha se presentan ${pagosMora} pagos a proveedores en mora", "error");
