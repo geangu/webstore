@@ -12,6 +12,7 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				<li><g:link class="list" controller="proveedor" action="index">Proveedores</g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -21,7 +22,7 @@
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<table>
-			<thead>
+				<thead>
 					<tr>
 						<g:sortableColumn property="orden" title="${message(code: 'compra.orden.label', default: 'Orden')}" />
 						<g:sortableColumn property="fecha" title="${message(code: 'compra.fecha.label', default: 'Fecha')}" />
@@ -41,7 +42,7 @@
 						<td>${fieldValue(bean: compraInstance, field: "numeroCuotas")}</td>
 						<td>
 							<g:link action="show" id="${compraInstance.id}">Ver</g:link>
-							<g:link action="pagar" id="${compraInstance.id}">Pagar</g:link>
+							<g:link action="pagos" id="${compraInstance.id}">Pagos</g:link>
 						</td>
 					</tr>
 				</g:each>

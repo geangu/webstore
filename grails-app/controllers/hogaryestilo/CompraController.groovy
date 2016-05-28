@@ -28,7 +28,6 @@ class CompraController {
     @Transactional
     def save(Compra compraInstance) {
 
-        compraInstance.fecha = new Date().parse('yyyy-MM-dd', params.fechaCompra)
         compraInstance.saldo = compraInstance.total
         compraInstance.valorCuota = compraInstance.total / compraInstance.numeroCuotas
         compraInstance.save flush:true
@@ -100,7 +99,70 @@ class CompraController {
         }
     }
 
-    def pagar(Compra compraInstance){
-        render "TODO"
+    def pagos(Compra compraInstance){
+        [compra: compraInstance]
     }
+
+    def pagar(Compra compraInstance){
+        [compra: compraInstance]
+    }
+
+    @Transactional
+    def pagar2(Compra compraInstance){
+
+        def pago = Pago.get(params.pago)
+
+        def compra = pago.compra
+        def saldo = compra.saldo - new BigInteger(params.valorPago)
+
+        if(saldo < 0){
+            flash.message="No puede ingresar un valor superior al saldo"
+            redirect action:'pagar', id: compraInstance.id
+            return
+        } else {
+            compra.saldo -= new BigInteger(params.valorPago)
+        }
+
+        def valorPago = new BigInteger(params.valorPago)
+        if( valorPago ){
+            if(valorPago == compra.valorCuota && pago.valorPago == null){
+                pago.pagado = true
+                pago.fechaPago = new Date()
+                pago.valorPago = valorPago
+                pago.save(flush:true, failOnError: true)
+            } else if(valorPago < compra.valorCuota){
+                pago.valorPago = pago.valorPago?:BigDecimal.ZERO
+                pago.valorPago += valorPago
+                if( pago.valorPago == compra.valorCuota ) {
+                    pago.pagado = true
+                    pago.fechaPago = new Date()
+                }
+                pago.save(flush:true, failOnError: true)
+            } else if(valorPago >= compra.valorCuota){
+                //Buscar las pagos de la compra e ir pagando hasta que se acabe el llete
+                def disponible = valorPago + (pago.valorPago?:0)
+                def _break = false
+                compra.pagos.sort{ it.numero }.each{ p ->
+                    if(!p.pagado && !_break){
+                        def valorMaximoPago = p.valor
+                        if( (disponible - p.valor) < 0 ){
+                            valorMaximoPago = disponible
+                            disponible = 0
+                            _break = true
+                            p.valorPago = valorMaximoPago
+                            p.save(flush: true, failOnError: true)
+                        } else if ( (disponible - p.valor) > 0 ){
+                            disponible -= p.valor
+                            p.valorPago = p.valor
+                            p.fechaPago = new Date()
+                            p.pagado = true
+                            p.save(flush: true, failOnError: true)
+                        }
+                    }
+                }
+            }
+        }
+        redirect action: 'pagos', id: compraInstance.id
+    }
+
 }
