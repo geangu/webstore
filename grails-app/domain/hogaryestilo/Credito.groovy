@@ -3,7 +3,6 @@ package hogaryestilo
 class Credito {
 
     Date fecha
-    Venta venta
     Integer numeroCuotas
     BigInteger total
     BigInteger valorCuota
