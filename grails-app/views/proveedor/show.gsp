@@ -8,98 +8,79 @@
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#show-proveedor" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
+
+		<div class="text-right">
+			<g:link class="btn btn-primary" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
+			<g:link class="btn btn-primary" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
 		</div>
-		<div id="show-proveedor" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+
+		<div id="show-proveedor" class="col-sm-12">
+			<h2><g:message code="default.show.label" args="[entityName]" /></h2>
+			<hr>
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+				<div class="alert alert-info" role="status">${flash.message}</div>
 			</g:if>
-			<ol class="property-list proveedor">
-			
-				<g:if test="${proveedorInstance?.nit}">
-				<li class="fieldcontain">
-					<span id="nit-label" class="property-label"><g:message code="proveedor.nit.label" default="Nit" /></span>
-					
-						<span class="property-value" aria-labelledby="nit-label"><g:fieldValue bean="${proveedorInstance}" field="nit"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${proveedorInstance?.razonSocial}">
-				<li class="fieldcontain">
-					<span id="razonSocial-label" class="property-label"><g:message code="proveedor.razonSocial.label" default="Razon Social" /></span>
-					
-						<span class="property-value" aria-labelledby="razonSocial-label"><g:fieldValue bean="${proveedorInstance}" field="razonSocial"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${proveedorInstance?.telefono}">
-				<li class="fieldcontain">
-					<span id="telefono-label" class="property-label"><g:message code="proveedor.telefono.label" default="Telefono" /></span>
-					
-						<span class="property-value" aria-labelledby="telefono-label"><g:fieldValue bean="${proveedorInstance}" field="telefono"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${proveedorInstance?.direccion}">
-				<li class="fieldcontain">
-					<span id="direccion-label" class="property-label"><g:message code="proveedor.direccion.label" default="Direccion" /></span>
-					
-						<span class="property-value" aria-labelledby="direccion-label"><g:fieldValue bean="${proveedorInstance}" field="direccion"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${proveedorInstance?.encargado}">
-				<li class="fieldcontain">
-					<span id="encargado-label" class="property-label"><g:message code="proveedor.encargado.label" default="Encargado" /></span>
-					
-						<span class="property-value" aria-labelledby="encargado-label"><g:fieldValue bean="${proveedorInstance}" field="encargado"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${proveedorInstance?.banco}">
-				<li class="fieldcontain">
-					<span id="banco-label" class="property-label"><g:message code="proveedor.banco.label" default="Banco" /></span>
-					
-						<span class="property-value" aria-labelledby="banco-label"><g:fieldValue bean="${proveedorInstance}" field="banco"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${proveedorInstance?.numeroCuenta}">
-				<li class="fieldcontain">
-					<span id="numeroCuenta-label" class="property-label"><g:message code="proveedor.numeroCuenta.label" default="Numero Cuenta" /></span>
-					
-						<span class="property-value" aria-labelledby="numeroCuenta-label"><g:fieldValue bean="${proveedorInstance}" field="numeroCuenta"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${proveedorInstance?.observaciones}">
-				<li class="fieldcontain">
-					<span id="observaciones-label" class="property-label"><g:message code="proveedor.observaciones.label" default="Observaciones" /></span>
-					
-						<span class="property-value" aria-labelledby="observaciones-label"><g:fieldValue bean="${proveedorInstance}" field="observaciones"/></span>
-					
-				</li>
-				</g:if>
-			
-			</ol>
+
+			<g:if test="${proveedorInstance?.nit}">
+				<div class="form-group">
+					<label id="nit-label"><g:message code="proveedor.nit.label" default="Nit" /></label>
+					<input type="text" readonly="true" class="form-control" aria-labelledby="nit-label" value="${proveedorInstance?.nit}"/>
+				</div>
+			</g:if>
+
+			<g:if test="${proveedorInstance?.razonSocial}">
+				<div class="form-group">
+					<label id="razonSocial-label"><g:message code="proveedor.razonSocial.label" default="Razon Social" /></label>
+					<input type="text" readonly="true" class="form-control" aria-labelledby="razonSocial-label" value="${proveedorInstance?.razonSocial}"/>
+				</div>
+			</g:if>
+
+			<g:if test="${proveedorInstance?.telefono}">
+				<div class="form-group">
+					<label id="telefono-label"><g:message code="proveedor.telefono.label" default="Telefono" /></label>
+					<input type="text" readonly="true" class="form-control" aria-labelledby="telefono-label" value="${proveedorInstance?.telefono}"/>
+				</div>
+			</g:if>
+
+			<g:if test="${proveedorInstance?.direccion}">
+				<div class="form-group">
+					<label id="direccion-label"><g:message code="proveedor.direccion.label" default="Direccion" /></label>
+					<input type="text" readonly="true" class="form-control" aria-labelledby="direccion-label" value="${proveedorInstance?.direccion}"/>
+				</div>
+			</g:if>
+
+			<g:if test="${proveedorInstance?.encargado}">
+				<div class="form-group">
+					<label id="encargado-label"><g:message code="proveedor.encargado.label" default="Encargado" /></label>
+					<input type="text" readonly="true" class="form-control" aria-labelledby="encargado-label" value="${proveedorInstance?.encargado}"/>
+				</div>
+			</g:if>
+
+			<g:if test="${proveedorInstance?.banco}">
+				<div class="form-group">
+					<label id="banco-label"><g:message code="proveedor.banco.label" default="Banco" /></label>
+					<input type="text" readonly="true" class="form-control" aria-labelledby="banco-label" value="${proveedorInstance?.banco}"/>
+				</div>
+			</g:if>
+
+			<g:if test="${proveedorInstance?.numeroCuenta}">
+				<div class="form-group">
+					<label id="numeroCuenta-label"><g:message code="proveedor.numeroCuenta.label" default="Numero Cuenta" /></label>
+					<input type="text" readonly="true" class="form-control" aria-labelledby="numeroCuenta-label" value="${proveedorInstance?.numeroCuenta}"/>
+				</div>
+			</g:if>
+
+			<g:if test="${proveedorInstance?.observaciones}">
+				<div class="form-group">
+					<label id="observaciones-label"><g:message code="proveedor.observaciones.label" default="Observaciones" /></label>
+					<input type="text" readonly="true" class="form-control" aria-labelledby="observaciones-label" value="${proveedorInstance?.observaciones}"/>
+				</div>
+			</g:if>
+
 			<g:form url="[resource:proveedorInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${proveedorInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+				<fieldset class="text-center">
+					<g:link class="btn btn-primary" action="edit" resource="${proveedorInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
 		</div>

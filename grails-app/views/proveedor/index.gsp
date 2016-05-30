@@ -1,4 +1,3 @@
-
 <%@ page import="hogaryestilo.Proveedor" %>
 <!DOCTYPE html>
 <html>
@@ -10,23 +9,26 @@
 		<asset:stylesheet src="fp.css"/>
 	</head>
 	<body>
-		<a href="#list-proveedor" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-				<li><a class="list" href="${createLink(controller: 'compra')}">Compras</a></li>
-				<li><filterpane:filterButton/></li>
-			</ul>
+
+		<div class="text-right">
+			<a class="btn btn-primary" href="${createLink(controller: 'compra')}">Compras</a>
+			<g:link class="btn btn-primary" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+			<filterpane:filterButton class="btn btn-primary"/>
 		</div>
-		<div id="list-proveedor" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+
+		<div id="list-proveedor" class="col-sm-12">
+			<h2><g:message code="default.list.label" args="[entityName]" /></h2>
+			<hr>
 			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
+				<div class="alert alert-info" role="status">${flash.message}</div>
 			</g:if>
-			<filterpane:filterPane domain="Proveedor"/>
-			<table>
-			<thead>
+			<div>
+				<p>
+					<filterpane:filterPane domain="Proveedor"/>
+				</p>
+			</div>
+			<table class="table table-striped table-hover">
+				<thead>
 					<tr>
 						<g:sortableColumn property="nit" title="${message(code: 'proveedor.nit.label', default: 'Nit')}" />
 						<g:sortableColumn property="razonSocial" title="${message(code: 'proveedor.razonSocial.label', default: 'Razon Social')}" />
@@ -37,21 +39,22 @@
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${proveedorInstanceList}" status="i" var="proveedorInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-						<td><g:link action="show" id="${proveedorInstance.id}">${fieldValue(bean: proveedorInstance, field: "nit")}</g:link></td>
-						<td>${fieldValue(bean: proveedorInstance, field: "razonSocial")}</td>
-						<td>${fieldValue(bean: proveedorInstance, field: "telefono")}</td>
-						<td>${fieldValue(bean: proveedorInstance, field: "direccion")}</td>
-						<td>${fieldValue(bean: proveedorInstance, field: "encargado")}</td>
-						<td>${fieldValue(bean: proveedorInstance, field: "banco")}</td>
-					</tr>
-				</g:each>
+					<g:each in="${proveedorInstanceList}" var="proveedorInstance">
+						<tr>
+							<td><g:link action="show" id="${proveedorInstance.id}">${fieldValue(bean: proveedorInstance, field: "nit")}</g:link></td>
+							<td>${fieldValue(bean: proveedorInstance, field: "razonSocial")}</td>
+							<td>${fieldValue(bean: proveedorInstance, field: "telefono")}</td>
+							<td>${fieldValue(bean: proveedorInstance, field: "direccion")}</td>
+							<td>${fieldValue(bean: proveedorInstance, field: "encargado")}</td>
+							<td>${fieldValue(bean: proveedorInstance, field: "banco")}</td>
+						</tr>
+					</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
+			<div class="pagination pagination-sm">
 				<g:paginate total="${proveedorInstanceCount ?: 0}" />
 			</div>
 		</div>
+
 	</body>
 </html>

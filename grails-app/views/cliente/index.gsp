@@ -1,4 +1,3 @@
-
 <%@ page import="hogaryestilo.Cliente" %>
 <!DOCTYPE html>
 <html>
@@ -10,22 +9,25 @@
 		<asset:stylesheet src="fp.css"/>
 	</head>
 	<body>
-		<a href="#list-cliente" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="list" action="index" controller="fiador">Fiadores</g:link></li>
-				<li><filterpane:filterButton/></li>
-			</ul>
+
+		<div class="text-right">
+			<a class="btn btn-primary" href="${createLink(controller: 'fiador')}">Fiadores</a>
+			<g:link class="btn btn-primary" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+			<filterpane:filterButton class="btn btn-primary"/>
 		</div>
-		<div id="list-cliente" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+
+		<div id="list-cliente" class="col-sm-12">
+			<h2><g:message code="default.list.label" args="[entityName]" /></h2>
+			<hr>
 			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
+				<div class="alert alert-info" role="status">${flash.message}</div>
 			</g:if>
-			<filterpane:filterPane domain="Cliente"/>
-			<table>
+			<div>
+				<p>
+					<filterpane:filterPane domain="Cliente"/>
+				</p>
+			</div>
+			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
 						<g:sortableColumn property="documento" title="${message(code: 'cliente.documento.label', default: 'Documento')}" />
@@ -49,7 +51,7 @@
 				</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
+			<div class="pagination pagination-sm">
 				<g:paginate total="${clienteInstanceCount ?: 0}" />
 			</div>
 		</div>

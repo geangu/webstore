@@ -1,4 +1,3 @@
-
 <%@ page import="hogaryestilo.Categoria" %>
 <!DOCTYPE html>
 <html>
@@ -8,44 +7,37 @@
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#show-categoria" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
+
+		<div class="text-right">
+			<g:link class="btn btn-primary" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
+			<g:link class="btn btn-primary" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
 		</div>
-		<div id="show-categoria" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+
+		<div id="show-categoria" class="col-sm-12">
+			<h2><g:message code="default.show.label" args="[entityName]" /></h2>
+			<hr>
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+				<div class="alert alert-info" role="status">${flash.message}</div>
 			</g:if>
-			<ol class="property-list categoria">
-			
-				<g:if test="${categoriaInstance?.nombre}">
-				<li class="fieldcontain">
-					<span id="nombre-label" class="property-label"><g:message code="categoria.nombre.label" default="Nombre" /></span>
-					
-						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${categoriaInstance}" field="nombre"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${categoriaInstance?.descripcion}">
-				<li class="fieldcontain">
-					<span id="descripcion-label" class="property-label"><g:message code="categoria.descripcion.label" default="Descripcion" /></span>
-					
-						<span class="property-value" aria-labelledby="descripcion-label"><g:fieldValue bean="${categoriaInstance}" field="descripcion"/></span>
-					
-				</li>
-				</g:if>
-			
-			</ol>
+
+			<g:if test="${categoriaInstance?.nombre}">
+				<div class="form-group">
+					<label id="nombre-label"><g:message code="proveedor.nombre.label" default="Nombre" /></label>
+					<input type="text" readonly="true" class="form-control" aria-labelledby="nombre-label" value="${categoriaInstance?.nombre}"/>
+				</div>
+			</g:if>
+
+			<g:if test="${categoriaInstance?.descripcion}">
+				<div class="form-group">
+					<label id="descripcion-label"><g:message code="proveedor.descripcion.label" default="Descripcion" /></label>
+					<input type="text" readonly="true" class="form-control" aria-labelledby="descripcion-label" value="${categoriaInstance?.descripcion}"/>
+				</div>
+			</g:if>
+
 			<g:form url="[resource:categoriaInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${categoriaInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+				<fieldset class="text-center">
+					<g:link class="btn btn-primary" action="edit" resource="${categoriaInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
 		</div>
