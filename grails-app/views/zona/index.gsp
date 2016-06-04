@@ -1,4 +1,3 @@
-
 <%@ page import="webstore.Zona" %>
 <!DOCTYPE html>
 <html>
@@ -10,22 +9,25 @@
 		<asset:stylesheet src="fp.css"/>
 	</head>
 	<body>
-		<a href="#list-zona" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-				<li><filterpane:filterButton/></li>
-			</ul>
+
+		<div class="text-right">
+			<g:link class="btn btn-primary" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+			<filterpane:filterButton class="btn btn-primary"/>
 		</div>
+
 		<div id="list-zona" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+			<h2><g:message code="default.list.label" args="[entityName]" /></h2>
+			<hr>
 			<g:if test="${flash.message}">
 				<div class="alert alert-info" role="status">${flash.message}</div>
 			</g:if>
-			<filterpane:filterPane domain="Zona"/>
-			<table>
-			<thead>
+			<div>
+				<p>
+					<filterpane:filterPane domain="Zona"/>
+				</p>
+			</div>
+			<table class="table table-striped table-hover">
+				<thead>
 					<tr>
 						<g:sortableColumn property="nombre" title="${message(code: 'zona.nombre.label', default: 'Nombre')}" />
 						<g:sortableColumn property="detalles" title="${message(code: 'zona.detalles.label', default: 'Detalles')}" />
@@ -40,7 +42,7 @@
 				</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
+			<div class="pagination pagination-sm">
 				<g:paginate total="${zonaInstanceCount ?: 0}" />
 			</div>
 		</div>

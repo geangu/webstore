@@ -55,7 +55,7 @@
 				</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
+			<div class="pagination pagination-sm">
 				<g:paginate total="${compraInstanceCount ?: 0}" />
 			</div>
 		</div>

@@ -8,44 +8,37 @@
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#show-zona" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
+
+		<div class="text-right">
+			<g:link class="btn btn-primary" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
+			<g:link class="btn btn-primary" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
 		</div>
-		<div id="show-zona" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+
+		<div id="show-zona" class="col-sm-12">
+			<h2><g:message code="default.show.label" args="[entityName]" /></h2>
+			<hr>
 			<g:if test="${flash.message}">
-			<div class="alert alert-info" role="status">${flash.message}</div>
+				<div class="alert alert-info" role="status">${flash.message}</div>
 			</g:if>
-			<ol class="property-list zona">
-			
-				<g:if test="${zonaInstance?.nombre}">
-				<li class="fieldcontain">
-					<span id="nombre-label" class="property-label"><g:message code="zona.nombre.label" default="Nombre" /></span>
-					
-						<span class="property-value" aria-labelledby="nombre-label"><g:fieldValue bean="${zonaInstance}" field="nombre"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${zonaInstance?.detalles}">
-				<li class="fieldcontain">
-					<span id="detalles-label" class="property-label"><g:message code="zona.detalles.label" default="Detalles" /></span>
-					
-						<span class="property-value" aria-labelledby="detalles-label"><g:fieldValue bean="${zonaInstance}" field="detalles"/></span>
-					
-				</li>
-				</g:if>
-			
-			</ol>
+
+			<g:if test="${zonaInstance?.nombre}">
+				<div class="form-group">
+					<label id="nombre-label" class="property-label"><g:message code="zona.nombre.label" default="Nombre" /></label>
+					<input type="text" readonly="true" class="form-control" value="${zonaInstance.nombre}">
+				</div>
+			</g:if>
+
+			<g:if test="${zonaInstance?.detalles}">
+				<div class="form-group">
+					<label id="detalles-label" class="property-label"><g:message code="zona.detalles.label" default="Detalles" /></label>
+					<input type="text" readonly="true" class="form-control" value="${zonaInstance.detalles}">
+				</div>
+			</g:if>
+
 			<g:form url="[resource:zonaInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${zonaInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+				<fieldset class="text-center">
+					<g:link class="btn btn-primary" action="edit" resource="${zonaInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<g:actionSubmit class="btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
 		</div>

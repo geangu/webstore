@@ -48,7 +48,7 @@
 				</g:each>
 				</tbody>
 			</table>
-			<div class="pagination">
+			<div class="pagination pagination-sm">
 				<g:paginate total="${fiadorInstanceCount ?: 0}" />
 			</div>
 		</div>

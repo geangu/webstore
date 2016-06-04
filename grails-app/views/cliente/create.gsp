@@ -11,7 +11,8 @@
 		</div>
 
 		<div id="create-cliente" class="col-sm-12">
-			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
+			<h2><g:message code="default.create.label" args="[entityName]" /></h2>
+			<hr>
 			<g:if test="${flash.message}">
 				<div class="alert alert-info" role="status">${flash.message}</div>
 			</g:if>
