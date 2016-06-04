@@ -14,6 +14,9 @@
 if (typeof jQuery !== 'undefined') {
 	(function($) {
 		setTimeout(function(){
+			$(".btn").addClass("no-print");
+			$("input[type='button']").addClass("no-print");
+			$("input[type='submit']").addClass("no-print");
 			$("#login .inner .cssform p").addClass("form-group");
 			$("#login .inner .cssform input[type='text']").addClass("form-control");
 			$("#login .inner .cssform input[type='password']").addClass("form-control");

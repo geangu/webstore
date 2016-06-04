@@ -175,3 +175,31 @@ button.Zebra_DatePicker_Icon_Inside_Left    { margin: 0 0 0 3px }
     padding-bottom: 0 !important;
     text-align: left !important;
 }
+
+@media print
+{
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+    a[href]:after {
+        content: none !important;
+    }
+    h1.title>a {
+        font-size: 16px !important;
+    }
+    h1.title>a>img {
+        width: 24px !important;
+        font-family: 'Coustard', serif !important;
+    }
+    h2{
+        font-size: 18px !important;
+    }
+    body{
+        font-size:14px !important;
+    }
+    hr{
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
