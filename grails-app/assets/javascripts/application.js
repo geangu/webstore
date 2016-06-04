@@ -13,10 +13,12 @@
 
 if (typeof jQuery !== 'undefined') {
 	(function($) {
-		$('#spinner').ajaxStart(function() {
-			$(this).fadeIn();
-		}).ajaxStop(function() {
-			$(this).fadeOut();
-		});
+		setTimeout(function(){
+			$("#login .inner .cssform p").addClass("form-group");
+			$("#login .inner .cssform input[type='text']").addClass("form-control");
+			$("#login .inner .cssform input[type='password']").addClass("form-control");
+			$("#remember_me_holder").hide();
+			$('#login #submit').addClass("btn btn-primary");
+		}, 150);
 	})(jQuery);
 }

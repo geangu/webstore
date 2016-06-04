@@ -1,28 +1,26 @@
 <meta name="layout" content="main">
 
-<div class="nav" role="navigation">
-    <ul>
-        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><a class="list" onclick="crearExcelVentasDia()">Reporte Ventas del día</a></li>
-        <g:if test="${venta.id}">
-            <g:if test="${venta.tipo=='Contado'}">
-                <li><g:link controller="venta" action="cerrar" id="${venta.id}"><i class="fa fa-money"></i> Cerrar Venta </g:link></li>
-            </g:if>
-            <g:if test="${venta.tipo=='Crédito'||venta.tipo=='Credicontado'}">
-                <li><g:link controller="venta" action="credito" id="${venta.id}"><i class="fa fa-money"></i> Crear Crédito </g:link></li>
-            </g:if>
-            <li><g:link controller="venta" action="descartar" id="${venta.id}"><i class="fa fa-trash"></i> Descartar Venta </g:link></li>
+
+<div class="pull-right">
+    <g:if test="${venta.id}">
+        <g:if test="${venta.tipo=='Contado'}">
+            <g:link class="btn btn-primary" controller="venta" action="cerrar" id="${venta.id}"><i class="fa fa-money"></i> Cerrar Venta </g:link>
         </g:if>
-    </ul>
+        <g:if test="${venta.tipo=='Crédito'||venta.tipo=='Credicontado'}">
+            <g:link class="btn btn-primary" controller="venta" action="credito" id="${venta.id}"><i class="fa fa-money"></i> Crear Crédito </g:link>
+        </g:if>
+        <g:link class="btn btn-danger" controller="venta" action="descartar" id="${venta.id}"><i class="fa fa-trash"></i> Descartar Venta </g:link>
+    </g:if>
+    <g:else>
+        <a class="btn btn-primary" onclick="crearExcelVentasDia()">Reporte Ventas del día</a>
+    </g:else>
 </div>
 
-<g:if test="${venta.id}">
+<h2>Detalles de Venta ${venta.orden}</h2>
+<hr>
 
-    <table>
-        <tr>
-            <td style="text-align:right;"><strong>Orden</strong></td>
-            <td>${venta.orden}</td>
-        </tr>
+<g:if test="${venta.id}">
+    <table class="table table-striped table-hover">
         <tr>
             <td style="text-align:right;"><strong>Fecha</strong></td>
             <td>${venta.fecha.format('yyyy-MM-dd')}</td>
@@ -50,7 +48,7 @@
     </table>
 
     <g:form controller="venta" action="anadir" id="${venta.id}">
-        <table>
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Producto</th>
@@ -61,21 +59,21 @@
             <tbody>
                 <tr>
                     <td>
-                        <g:select name="productoId" from="${webstore.Producto.list()}"
+                        <g:select class="form-control" name="productoId" from="${webstore.Producto.list()}"
                             optionKey="id" class="many-to-one" noSelection="['null': '']"/>
                     </td>
                     <td>
-                        <input type="number" name="cantidad">
+                        <input class="form-control" type="number" name="cantidad">
                     </td>
                     <td>
-                        <input type="submit" value="Añadir">
+                        <input class="btn btn-success" type="submit" value="Añadir">
                     </td>
                 </tr>
             </tbody>
         </table>
     </g:form>
 
-    <table>
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>Item</th>
@@ -100,7 +98,7 @@
                         <g:formatNumber number="${Long.parseLong(precio.toString()) * d.cantidad}" format="\$###,##0" />
                     </td>
                     <td>
-                        <g:link action="quitar" id="${venta.id}" params="[productoId: d.producto.id]">Quitar</g:link>
+                        <g:link class="btn btn-sm btn-default" action="quitar" id="${venta.id}" params="[productoId: d.producto.id]">Quitar</g:link>
                     </td>
                 </tr>
             </g:each>
@@ -112,47 +110,47 @@
     <g:form controller="venta" action="guardar">
         <fieldset class="form">
 
-            <div class="fieldcontain required">
+            <div class="form-group">
                 <label for="orden">
                     <g:message code="venta.orden.label" default="Orden" />
                     <span class="required-indicator">*</span>
                 </label>
-                <input type="number" name="orden">
+                <input class="form-control" type="number" name="orden">
             </div>
 
-            <div class="fieldcontain required">
+            <div class="form-group">
                 <label for="fecha">
                     <g:message code="venta.fecha.label" default="Tipo" />
                     <span class="required-indicator">*</span>
                 </label>
-                <input type="date" name="fecha" value="${new Date().format('yyyy-MM-dd')}">
+                <input class="form-control" type="date" name="fecha" value="${new Date().format('yyyy-MM-dd')}">
             </div>
 
-            <div class="fieldcontain required">
+            <div class="form-group">
                 <label for="tipo">
                     <g:message code="venta.tipo.label" default="Tipo" />
                     <span class="required-indicator">*</span>
                 </label>
-                <g:select name="tipo" from="${venta?.constraints?.tipo?.inList}" value="${venta?.tipo}"/>
+                <g:select class="form-control" name="tipo" from="${venta?.constraints?.tipo?.inList}" value="${venta?.tipo}"/>
             </div>
 
-            <div class="fieldcontain required">
+            <div class="form-group">
                 <label for="cliente">
                     <g:message code="venta.cliente.label" default="Cliente" />
                     <span class="required-indicator">*</span>
                 </label>
-                <g:select id="cliente" name="clienteId" from="${webstore.Cliente.list()}" optionKey="id" required="" value="${venta?.cliente?.id}" class="many-to-one"/>
+                <g:select class="form-control" id="cliente" name="clienteId" from="${webstore.Cliente.list()}" optionKey="id" required="" value="${venta?.cliente?.id}" class="many-to-one"/>
             </div>
 
-            <div class="fieldcontain ">
+            <div class="form-group ">
                 <label for="observaciones">
                     <g:message code="venta.observaciones.label" default="Observaciones" />
                 </label>
-                <g:textArea name="observaciones" value="${venta?.observaciones}"/>
+                <g:textArea class="form-control" name="observaciones" value="${venta?.observaciones}"/>
             </div>
         </fieldset>
-        <fieldset class="buttons">
-            <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+        <fieldset class="text-center">
+            <g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
         </fieldset>
     </g:form>
 </g:else>

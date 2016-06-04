@@ -1,6 +1,6 @@
 <meta name="layout" content="main">
 
-<div class="text-right">
+<div class="pull-right">
     <a class="btn btn-primary" href="${createLink(action: 'index')}">Buscar por número de orden o cédula de cliente</a>
 </div>
 

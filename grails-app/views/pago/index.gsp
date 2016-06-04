@@ -4,7 +4,7 @@
         <meta name="layout" content="main">
     </head>
     <body>
-        <div class="text-right">
+        <div class="pull-right">
             <a class="btn btn-primary" onclick="crearExcelPagosDia()">Reporte Pagos del día</a>
             <a class="btn btn-primary" onclick="crearExcelMorosos()">Reporte Morosos</a>
             <a class="btn btn-primary" href="${createLink(controller: 'pago', action:'zona')}">Reporte Morosos por Zona</a>

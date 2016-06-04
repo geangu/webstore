@@ -1,14 +1,13 @@
 <meta name="layout" content="main">
 
-<div class="nav" role="navigation">
-    <ul>
-        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <g:if test="${venta.id}">
-            <li><g:link controller="venta" action="descartar" id="${venta.id}"><i class="fa fa-trash"></i> Descartar Venta </g:link></li>
-        </g:if>
-    </ul>
+<div class="pull-right">
+    <g:if test="${venta.id}">
+        <g:link class="btn btn-danger" controller="venta" action="descartar" id="${venta.id}"><i class="fa fa-trash"></i> Descartar Venta </g:link>
+    </g:if>
 </div>
 
+<h2>Crear Crédito Venta: ${venta.orden}</h2>
+<hr>
 
 <g:form controller="credito" action="crear">
 
@@ -18,40 +17,40 @@
 
     <fieldset class="form">
 
-        <div class="fieldcontain required">
+        <div class="form-group">
             <label for="fecha">
                 <g:message code="venta.fecha.label" default="Fecha" />
             </label>
-            <g:textField name="fechas" value="${formatDate(number: venta.fecha, format:'yyyy-MM-dd')}" />
+            <g:textField class="form-control" name="fechas" value="${formatDate(number: venta.fecha, format:'yyyy-MM-dd')}" />
         </div>
 
-        <div class="fieldcontain required">
+        <div class="form-group">
             <label for="total">
                 <g:message code="venta.total.label" default="Total" />
             </label>
-            <input name="total" value="${venta.total}" type="number"/>
+            <input class="form-control" name="total" value="${venta.total}" type="number"/>
         </div>
 
-        <div class="fieldcontain required">
+        <div class="form-group">
             <label for="valorCuota">
                 <g:message code="venta.valorCuota.label" default="Valor Cuota" />
                 <span class="required-indicator">*</span>
             </label>
-            <input id="valorCuota" name="valorCuota" value="${venta.total/12}" readonly="true" type="number"/>
+            <input class="form-control" id="valorCuota" name="valorCuota" value="${venta.total/12}" readonly="true" type="number"/>
         </div>
 
-        <div class="fieldcontain required">
+        <div class="form-group">
             <label for="cuotas">
                 <g:message code="venta.cuotas.label" default="Cuotas" />
                 <span class="required-indicator">*</span>
             </label>
-            <input name="cuotas" value="12" onkeyup="$('#valorCuota').val(${venta.total}/this.value);" type="number"/>
+            <input class="form-control" name="cuotas" value="12" onkeyup="$('#valorCuota').val(${venta.total}/this.value);" type="number"/>
         </div>
 
     </fieldset>
 
-    <fieldset class="buttons">
-        <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+    <fieldset class="text-center">
+        <g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
     </fieldset>
 
 </g:form>

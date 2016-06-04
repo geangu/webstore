@@ -150,3 +150,32 @@ button.Zebra_DatePicker_Icon_Disabled       { background-image: url('../images/c
 button.Zebra_DatePicker_Icon                { margin: 0 0 0 3px }
 button.Zebra_DatePicker_Icon_Inside_Right   { margin: 0 3px 0 0 }
 button.Zebra_DatePicker_Icon_Inside_Left    { margin: 0 0 0 3px }
+
+
+#login .inner .fheader {
+    background-color: #DD4814 !important;
+    color: #FFFFFF !important;
+    font-size: 18px !important;
+    font-weight: normal !important;
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+}
+
+#login .inner .cssform p {
+    padding-left: 10em !important;
+    margin-bottom: 1em !important;
+}
+
+#login .inner {
+    background-color: #FFF !important;
+    border-radius: 13px !important;
+    border: 1px solid #DD4814 !important;
+    box-shadow: 2px 2px 2px #eee !important;
+    margin: 2em auto !important;
+    padding-bottom: 0 !important;
+    text-align: left !important;
+}
+
+hr {
+    border-top: 1px solid #772953 !important;
+}

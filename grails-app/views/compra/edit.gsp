@@ -7,11 +7,11 @@
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<div class="text-right">
-			<g:link class="btn btn-primary" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
-			<g:link class="btn btn-primary" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
-		</div>
 		<div id="edit-compra" class="content scaffold-edit" role="main">
+			<div class="pull-right">
+				<g:link class="btn btn-primary" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
+				<g:link class="btn btn-primary" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+			</div>
 			<h2><g:message code="default.edit.label" args="[entityName]" /></h2>
 			<hr>
 			<g:if test="${flash.message}">

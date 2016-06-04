@@ -45,7 +45,4 @@ class CreditoController {
         return calendar.getTime()
     }
 
-    def pago(Credito credito){
-
-    }
 }

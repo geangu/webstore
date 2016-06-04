@@ -1,6 +1,6 @@
 <meta name="layout" content="main">
 
-<div class="text-right">
+<div class="pull-right">
     <a class="btn btn-primary" href="${createLink(action: 'index')}">Buscar por número de orden o cédula de cliente</a>
     <g:if test="${credito.saldo > 0}">
         <a class="btn btn-primary" href="${createLink(action:'buscar',params:[creditoId:credito.id])}">

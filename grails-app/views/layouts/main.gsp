@@ -63,8 +63,13 @@
 			</div>
 		</nav>
 	</sec:ifLoggedIn>
+	<sec:ifNotLoggedIn>
+		<div class="container">
+			<hr>
+		</div>
+	</sec:ifNotLoggedIn>
 
-	<div class="container" style="min-height: 600px;">
+	<div class="container" style="min-height: 400px;">
 		<g:layoutBody/>
 	</div>
 

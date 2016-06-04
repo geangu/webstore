@@ -1,13 +1,12 @@
 <meta name="layout" content="main">
 
-<div class="text-right">
-    <g:link class="btn btn-primary" action="index">Compras</g:link>
-    <g:if test="${compra.saldo > 0}">
-        <g:link class="btn btn-primary" action="pagar" id="${compra.id}">Pagar</g:link>
-    </g:if>
-</div>
-
 <div>
+    <div class="pull-right">
+        <g:link class="btn btn-primary" action="index">Compras</g:link>
+        <g:if test="${compra.saldo > 0}">
+            <g:link class="btn btn-primary" action="pagar" id="${compra.id}">Pagar</g:link>
+        </g:if>
+    </div>
     <g:if test="${flash.message}">
         <div class="alert alert-info" role="status">${flash.message}</div>
     </g:if>

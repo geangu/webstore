@@ -10,13 +10,12 @@
 	</head>
 	<body>
 
-		<div class="text-right">
-			<a class="btn btn-primary" href="${createLink(controller: 'producto')}">Productos</a>
-			<g:link class="btn btn-primary" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
-			<filterpane:filterButton class="btn btn-primary"/>
-		</div>
-
 		<div id="list-categoria" class="col-sm-12">
+			<div class="pull-right">
+				<a class="btn btn-primary" href="${createLink(controller: 'producto')}">Productos</a>
+				<g:link class="btn btn-primary" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
+				<filterpane:filterButton class="btn btn-primary"/>
+			</div>
 			<h2><g:message code="default.list.label" args="[entityName]" /></h2>
 			<hr>
 			<g:if test="${flash.message}">

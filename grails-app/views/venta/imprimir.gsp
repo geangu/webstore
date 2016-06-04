@@ -3,7 +3,7 @@
 </p>
 <br>
 <br>
-<table style="width: 100">
+<table class="table table-striped table-hover">
     <tr>
         <td style="text-align:right;"><strong>Fecha</strong></td>
         <td>${venta.fecha.format('yyyy-MM-dd')}</td>
@@ -30,7 +30,7 @@
     </tr>
 </table>
 
-<table>
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>Item</th>

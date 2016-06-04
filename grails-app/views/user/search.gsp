@@ -5,7 +5,7 @@
 	</head>
 	<body>
 		<div>
-			<div class="text-right">
+			<div class="pull-right">
 				<g:link class="btn btn-primary" action="create"><g:message code="default.new.label" args="['User']" /></g:link>
 			</div>
 			<s2ui:formContainer type='search' beanType='user'>

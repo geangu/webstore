@@ -1,6 +1,6 @@
 <meta name="layout" content="main">
 
-<div class="text-right">
+<div class="pull-right">
     <a class="btn btn-primary" href="${createLink(controller: 'compra', action:'pagos', id:compra.id)}">Detalle Orden ${compra.orden}</a>
 </div>
 
