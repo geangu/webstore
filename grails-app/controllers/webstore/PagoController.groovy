@@ -26,7 +26,7 @@ class PagoController {
             [credito: credito, cliente: credito.venta.cliente]
         } else if(params.cedula){
             def cliente = Cliente.findByDocumento( params.cedula )
-            def ventas = Venta.findAllByClienteAndTipo(cliente, 'Crédito')
+            def ventas = Venta.findAllByCliente(cliente)
             def creditos = []
             ventas.each{ venta->
                 def c = Credito.findByVenta(venta)

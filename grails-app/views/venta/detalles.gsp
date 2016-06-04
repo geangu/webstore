@@ -120,7 +120,7 @@
 
             <div class="form-group">
                 <label for="fecha">
-                    <g:message code="venta.fecha.label" default="Tipo" />
+                    <g:message code="venta.fecha.label" default="Fecha" />
                     <span class="required-indicator">*</span>
                 </label>
                 <input class="form-control" type="date" name="fecha" value="${new Date().format('yyyy-MM-dd')}">
