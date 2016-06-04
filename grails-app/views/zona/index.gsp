@@ -21,7 +21,7 @@
 		<div id="list-zona" class="content scaffold-list" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
+				<div class="alert alert-info" role="status">${flash.message}</div>
 			</g:if>
 			<filterpane:filterPane domain="Zona"/>
 			<table>
