@@ -1,42 +1,37 @@
 <meta name="layout" content="main">
 
-<div class="nav" role="navigation">
-    <ul>
-        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><a class="search" href="${createLink(action: 'index')}">Buscar</a></li>
-        <g:if test="${credito.saldo > 0}">
-            <li>
-                <a class="save" href="${createLink(action:'buscar',params:[creditoId:credito.id])}">
-                    <i class="fa fa-money"></i>  ${message(code: 'default.button.create.label')}
-                </a>
-            </li>
-        </g:if>
-    </ul>
+<div class="text-right">
+    <a class="btn btn-primary" href="${createLink(action: 'index')}">Buscar por número de orden o cédula de cliente</a>
+    <g:if test="${credito.saldo > 0}">
+        <a class="btn btn-primary" href="${createLink(action:'buscar',params:[creditoId:credito.id])}">
+            Pagar Orden ${credito.venta.orden}
+        </a>
+    </g:if>
 </div>
+
+<h2>Historial Orden ${credito.venta.orden}</h2>
+<hr>
 
 <g:form name="name">
 
     <fieldset class="form">
         <input type="hidden" name="creditoId" value="${credito.id}"/>
-        <div class="fieldcontain">
-            <label for="credito">Número Orden</label>
-            <input name="credito" value="${credito.venta.orden}" type="text" readonly="true" disabled="true"/>
-        </div>
-        <div class="fieldcontain">
+        <div class="form-group">
             <label for="cliente">Cliente</label>
-            <input name="cliente" value="${credito.venta.cliente}" type="text" readonly="true" disabled="true"/>
+            <input name="cliente" value="${credito.venta.cliente}" type="text" readonly="true" class="form-control"/>
         </div>
-        <div class="fieldcontain">
+        <div class="form-group">
             <label for="total">Total Credito</label>
-            <input name="total" value="${credito.total}" type="number" readonly="true" disabled="true"/>
+            <input name="total" value="${credito.total}" type="number" readonly="true" class="form-control"/>
         </div>
-        <div class="fieldcontain">
+        <div class="form-group">
             <label for="saldo">Saldo Pendiente</label>
-            <input name="saldo" value="${credito.saldo}" type="number" readonly="true" disabled="true"/>
+            <input name="saldo" value="${credito.saldo}" type="number" readonly="true" class="form-control"/>
         </div>
     </fieldset>
-
-    <table style="width: 90%; margin: 1em auto; border: 1px solid lightgray;">
+    <hr>
+    
+    <table class="table table-striped table-hover">
         <thead>
             <th>Cuota</th>
             <th>Fecha Cuota</th>
@@ -58,8 +53,7 @@
             </g:each>
         </tbody>
     </table>
-
-    <fieldset class="buttons">
-        <a class="print" onclick="window.print();return;">Imprimir</button>
-    </fieldset>
+    <div class="text-center">
+        <a class="btn btn-primary" onclick="window.print();return;">Imprimir</a>
+    </div>
 </g:form>
