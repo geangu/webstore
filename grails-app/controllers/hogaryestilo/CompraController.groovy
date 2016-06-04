@@ -3,6 +3,7 @@ package hogaryestilo
 import grails.transaction.Transactional
 import groovy.sql.Sql
 import java.util.concurrent.TimeUnit
+import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.security.access.annotation.Secured
 import static org.springframework.http.HttpStatus.*
 
@@ -12,6 +13,7 @@ class CompraController {
 
     def dataSource
     def fechaService
+    def filterPaneService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -20,8 +22,18 @@ class CompraController {
         respond Compra.list(params), model:[compraInstanceCount: Compra.count()]
     }
 
+    def filter(Integer max) {
+        if(!params.max) params.max = 10
+        render( view:'index', model:[
+            compraInstanceList: filterPaneService.filter( params, Compra ),
+            compraInstanceCount: filterPaneService.count( params, Compra ),
+            filterParams: FilterPaneUtils.extractFilterParams(params),
+            params: params
+        ])
+    }
+
     def show(Compra compraInstance) {
-        respond compraInstance
+        redirect action:'pagos', id: compraInstance.id
     }
 
     def create() {

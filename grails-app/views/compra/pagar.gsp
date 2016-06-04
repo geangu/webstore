@@ -1,44 +1,39 @@
 <meta name="layout" content="main">
 
-<div class="nav" role="navigation">
-    <ul>
-        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><a class="list" href="${createLink(controller: 'compra', action:'pagos', id:compra.id)}">Compras</a></li>
-    </ul>
+<div class="text-right">
+    <a class="btn btn-primary" href="${createLink(controller: 'compra', action:'pagos', id:compra.id)}">Detalle Orden ${compra.orden}</a>
 </div>
 
 <g:if test="${flash.message}">
     <div class="message" role="status">${flash.message}</div>
 </g:if>
 
+<h2>Pago Orden de Compra ${compra?.orden}</h2>
+<hr>
 <g:form name="name" controller="compra" action="pagar2" id="${compra.id}">
 
     <fieldset class="form">
-        <div class="fieldcontain">
-            <label for="compraIdRead">Número Orden</label>
-            <input name="compraIdRead" value="${compra.orden}" type="number" readonly="true" disabled="true"/>
-        </div>
-        <div class="fieldcontain">
+        <div class="form-group">
             <label for="total">Total Compra</label>
-            <input name="total" value="${compra.total}" type="number" readonly="true" disabled="true"/>
+            <input class="form-control" name="total" value="${compra.total}" type="number" readonly="true" disabled="true"/>
         </div>
-        <div class="fieldcontain">
+        <div class="form-group">
             <label for="saldo">Saldo Pendiente</label>
-            <input name="saldo" value="${compra.saldo}" type="number" readonly="true" disabled="true"/>
+            <input class="form-control" name="saldo" value="${compra.saldo}" type="number" readonly="true" disabled="true"/>
         </div>
-        <div class="fieldcontain required">
+        <div class="form-group required">
             <label for="pago">Pago</label>
             <g:select name="pago" from="${ compra.pagos.findAll{!it.pagado}.sort{it.numero} }" required="true" optionKey="id" optionValue="numero"/>
-            <input type="hidden" name="valor" value="${compra.saldo<compra.valorCuota?compra.saldo:compra.valorCuota}"/>
+            <input class="form-control" type="hidden" name="valor" value="${compra.saldo<compra.valorCuota?compra.saldo:compra.valorCuota}"/>
         </div>
-        <div class="fieldcontain">
+        <div class="form-group">
             <label for="valorPago">Valor Pago</label>
-            <input name="valorPago" value="${compra.valorCuota}" type="number"/>
+            <input class="form-control" name="valorPago" value="${compra.valorCuota}" type="number"/>
         </div>
     </fieldset>
-    <fieldset class="buttons">
+    <fieldset class="text-center">
         <g:if test="${compra.saldo > 0}">
-            <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+            <g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
         </g:if>
     </fieldset>
 </g:form>

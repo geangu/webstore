@@ -1,48 +1,45 @@
 <meta name="layout" content="main">
 
-<div class="nav" role="navigation">
-    <ul>
-        <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><g:link class="list" action="index">Pagos</g:link></li>
-        <li><g:link class="create" action="pagar" id="${compra.id}">Pagar</g:link></li>
-    </ul>
+<div class="text-right">
+    <g:link class="btn btn-primary" action="index">Compras</g:link>
+    <g:if test="${compra.saldo > 0}">
+        <g:link class="btn btn-primary" action="pagar" id="${compra.id}">Pagar</g:link>
+    </g:if>
 </div>
 
 <div>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
-    <ol class="property-list compra">
-        <li class="fieldcontain">
-            <label id="orden-label" class="property-label"><g:message code="compra.orden.label" default="Orden" /></label>
-            <span class="property-value" aria-labelledby="orden-label">${compra?.orden}</span>
-        </li>
-        <li class="fieldcontain">
+    <h2>Detalles compra ${compra?.orden}</h2>
+    <hr>
+    <form>
+        <div class="form-group">
             <label id="fecha-label" class="property-label"><g:message code="compra.fecha.label" default="Fecha Compra" /></label>
-            <span class="property-value" aria-labelledby="fecha-label">${compra?.fecha?.format('dd-MM-yyyy')}</span>
-        </li>
-        <li class="fieldcontain">
+            <input class="form-control" readonly="true" value="${compra?.fecha?.format('dd-MM-yyyy')}" />
+        </div>
+        <div class="form-group">
             <label id="proveedor-label" class="property-label"><g:message code="compra.proveedor.label" default="Proveedor" /></label>
-            <span class="property-value" aria-labelledby="proveedor-label">${compra?.proveedor}</span>
-        </li>
-        <li class="fieldcontain">
+            <input class="form-control" readonly="true" value="${compra?.proveedor}" />
+        </div>
+        <div class="form-group">
             <label id="total-label" class="property-label"><g:message code="compra.total.label" default="Total" /></label>
-            <span class="property-value" aria-labelledby="total-label">${compra?.total}</span>
-        </li>
-        <li class="fieldcontain">
+            <input class="form-control" readonly="true" value="${compra?.total}" />
+        </div>
+        <div class="form-group">
             <label id="saldo-label" class="property-label"><g:message code="compra.saldo.label" default="Saldo" /></label>
-            <span class="property-value" aria-labelledby="saldo-label">${compra?.saldo}</span>
-        </li>
+            <input class="form-control" readonly="true" value="${compra?.saldo}" />
+        </div>
         <g:if test="${compra.observaciones}">
-            <li class="fieldcontain">
+            <div class="form-group">
                 <label id="observaciones-label" class="property-label"><g:message code="compra.observaciones.label" default="Observaciones" /></label>
-                <span class="property-value" aria-labelledby="observaciones-label">${compra?.observaciones}</span>
-            </li>
+                <input class="form-control" readonly="true" value="${compra?.observaciones}" />
+            </div>
         </g:if>
-    </ol>
+    </form>
 </div>
 
-<table>
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>Número</th>
