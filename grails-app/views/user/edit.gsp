@@ -1,9 +1,9 @@
 <sec:ifNotSwitched>
 	<sec:ifAllGranted roles='${securityConfig.ui.switchUserRoleName}'>
-	<g:set var='username' value='${uiPropertiesStrategy.getProperty(user, 'username')}'/>
-	<g:if test='${username}'>
-	<g:set var='canRunAs' value='${true}'/>
-	</g:if>
+		<g:set var='username' value='${uiPropertiesStrategy.getProperty(user, 'username')}'/>
+		<g:if test='${username}'>
+			<g:set var='canRunAs' value='${true}'/>
+		</g:if>
 	</sec:ifAllGranted>
 </sec:ifNotSwitched>
 <html>

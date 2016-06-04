@@ -51,6 +51,11 @@ class ClienteController {
             return
         }
 
+        println params['fiador.id'] == '0'
+        if(params['fiador.id'] == '0'){
+            clienteInstance.fiador = null
+        }
+
         clienteInstance.save flush:true
 
         request.withFormat {

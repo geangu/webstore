@@ -1,50 +1,88 @@
-<!doctype html>
-<html class="no-js" lang="">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><g:layoutTitle default="Grails"/></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
-		<s2ui:stylesheet src='spring-security-ui'/>
-  		<asset:stylesheet src="application.css"/>
-		<asset:javascript src="application.js"/>
-		<g:layoutHead/>
-	</head>
-	<body>
-		<div id="grailsLogo" role="banner">
-			<a href="${resource(file:'/')}"><asset:image src="grails_logo.png" alt="Hogar y Estilo"/></a>
-		</div>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" controller="user" action="search"><g:message code="default.list.label" args="['Usuario']" /></g:link></li>
-				<li><g:link class="create" controller="user" action="create"><g:message code="default.new.label" args="['Usuario']" /></g:link></li>
-			</ul>
-		</div>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title><g:layoutTitle default="WebStore"/></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
+
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<asset:stylesheet src="select2.min.css"/>
+
+	<asset:stylesheet src="application.css"/>
+	<asset:stylesheet src="bootstrap.min.css"/>
+	<asset:javascript src="application.js"/>
+	<s2ui:stylesheet src='spring-security-ui'/>
+	<style media="screen">
+		select, textarea{
+			width: 100%;
+		}
+		.title>a>img{
+			margin-right: 0.5em !important;
+		}
+	</style>
+	<g:layoutHead/>
+</head>
+<body>
+
+	<div class="container">
+		<h1 class="title">
+			<a href="${createLink(uri: '/')}"><asset:image src="favicon.png"/>&nbsp;&nbsp;&nbsp;Home & Style</a>
+		</h1>
+	</div>
+
+	<sec:ifLoggedIn>
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<div class="collapse navbar-collapse" id="navbar-main">
+					<ul class="nav navbar-nav navbar-right">
+						<sec:ifAllGranted roles="ROLE_ADMIN">
+							<li><g:link controller="user"><i class="fa fa-user-plus"></i> Usuarios</g:link></li>
+							<li><g:link controller="proveedor"><i class="fa fa-truck"></i> Proveedores</g:link></li>
+							<li><g:link controller="categoria"><i class="fa fa-building"></i> Categoria</g:link></li>
+							<li><g:link controller="producto"><i class="fa fa-clone"></i> Productos</g:link></li>
+							<li><g:link controller="zona"><i class="fa fa-map-marker"></i> Zona</g:link></li>
+						</sec:ifAllGranted>
+
+						<li><g:link controller="cliente"><i class="fa fa-users"></i> Clientes</g:link></li>
+						<li><g:link controller="pago"><i class="fa fa-money"></i> Pago</g:link></li>
+						<li><g:link controller="venta" action="detalles"><i class="fa fa-shopping-bag"></i> Ventas </g:link></li>
+						<li><a href="#" onclick="location.href='${createLink(controller:'logout')}';"><i class="fa fa-sign-out"></i> Salir</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</sec:ifLoggedIn>
+
+	<div class="container" style="min-height: 600px;">
 		<div>
-			<div>
-				<div id='s2ui_header_body'>
-					<div id='s2ui_header_title'><g:message code='spring.security.ui.defaultTitle'/></div>
-					<g:render template='/includes/ajaxLogin'/>
-				</div>
-			</div>
-			<div id="s2ui_main">
-				<div id="s2ui_content">
-					<g:layoutBody/>
-				</div>
+			<div id='s2ui_header_body'>
+				<g:render template='/includes/ajaxLogin'/>
 			</div>
 		</div>
-		<asset:javascript src='spring-security-ui.js'/>
-		<s2ui:showFlash/>
-		<s2ui:deferredScripts/>
+		<div id="s2ui_main">
+			<div id="s2ui_content">
+				<g:layoutBody/>
+			</div>
+		</div>
+	</div>
+
+	<asset:javascript src='spring-security-ui.js'/>
+	<s2ui:showFlash/>
+	<s2ui:deferredScripts/>
+	<div class="container">
 		<hr>
-		<div class="footer" role="contentinfo">
-			Developed by
-			<a href="http://twitter.com/geangu">@geangu</a> 2016©
-		</div>
-		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
-	</body>
+		<h6 class="text-right">Developed by <a href="http://twitter.com/geangu">@geangu</a> 2016©</h6>
+	</div>
+</body>
 </html>

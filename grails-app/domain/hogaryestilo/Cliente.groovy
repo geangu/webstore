@@ -18,6 +18,7 @@ class Cliente {
         telefono nullable: false
         direccion nullable: false
         zona nullable: false
+        fiador nullable: true
     }
 
     @Override

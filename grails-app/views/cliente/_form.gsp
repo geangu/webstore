@@ -45,5 +45,6 @@
 		<g:message code="cliente.fiador.label" default="Fiador" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="fiador" class="form-control" name="fiador.id" from="${hogaryestilo.Fiador.list()}" optionKey="id" required="" value="${clienteInstance?.fiador?.id}" class="many-to-one"/>
+	<g:select id="fiador" class="form-control" name="fiador.id" from="${hogaryestilo.Fiador.list()}" optionKey="id" value="${clienteInstance?.fiador?.id}" class="many-to-one"
+		noSelection="['0':'Seleccione']" />
 </div>

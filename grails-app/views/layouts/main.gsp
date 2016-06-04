@@ -13,6 +13,7 @@
 	<asset:stylesheet src="application.css"/>
 	<asset:stylesheet src="bootstrap.min.css"/>
 	<asset:javascript src="application.js"/>
+
 	<style media="screen">
 		select, textarea{
 			width: 100%;
@@ -61,22 +62,22 @@
 				</div>
 			</div>
 		</nav>
-		</sec:ifLoggedIn>
+	</sec:ifLoggedIn>
 
-		<div class="container" style="min-height: 600px;">
-			<g:layoutBody/>
-		</div>
+	<div class="container" style="min-height: 600px;">
+		<g:layoutBody/>
+	</div>
 
-		<div class="container">
-			<hr>
-			<h6 class="text-right">Developed by <a href="http://twitter.com/geangu">@geangu</a> 2016©</h6>
-		</div>
+	<div class="container">
+		<hr>
+		<h6 class="text-right">Developed by <a href="http://twitter.com/geangu">@geangu</a> 2016©</h6>
+	</div>
 
-		<asset:javascript src="select2.min.js"/>
-		<asset:javascript src="zebra_datepicker.js"/>
-		<script>
-			$('select').select2();
-			$('input[type="date"]').Zebra_DatePicker();
-		</script>
-	</body>
+	<asset:javascript src="select2.min.js"/>
+	<asset:javascript src="zebra_datepicker.js"/>
+	<script>
+		$('select').select2();
+		$('input[type="date"]').Zebra_DatePicker();
+	</script>
+</body>
 </html>

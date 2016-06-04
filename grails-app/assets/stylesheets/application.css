@@ -23,6 +23,19 @@ div#filterPane .buttons {
     border: 2px;
 }
 
+.filterPaneTable {
+    width: 100%;
+}
+
+.filterPaneTable input[type='text'] {
+    width: 100%;
+    margin: 0.3em;
+}
+
+.select2-container {
+    width: 100% !important;
+}
+
 .fieldcontain label {
     display: block;
     width: 100%;
