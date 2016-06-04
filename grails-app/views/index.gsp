@@ -15,6 +15,8 @@
 						<ol class="carousel-indicators">
 							<li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
 							<li data-target="#homeCarousel" data-slide-to="1"></li>
+							<li data-target="#homeCarousel" data-slide-to="2"></li>
+							<li data-target="#homeCarousel" data-slide-to="3"></li>
 					    </ol>
 						<div class="carousel-inner" role="listbox">
 							<div class="item active">
@@ -22,6 +24,12 @@
 							</div>
 							<div class="item">
 								<asset:image src="home-2.jpeg" style="width: 100%;" />
+							</div>
+							<div class="item">
+								<asset:image src="home-3.jpeg" style="width: 100%;" />
+							</div>
+							<div class="item">
+								<asset:image src="home-4.jpeg" style="width: 100%;" />
 							</div>
 		    			</div>
 						<a class="left carousel-control" href="#homeCarousel" role="button" data-slide="prev">
