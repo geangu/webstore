@@ -38,7 +38,7 @@
 
 		</div>
 
-		<g:each var="p" in="${hogaryestilo.Producto.list()}">
+		<g:each var="p" in="${webstore.Producto.list()}">
 			<g:if test="${p.almacen < 3}">
 				<script>
 					$.notify("Quedan solo ${p.almacen} unidades del producto ${p}", "warn");

@@ -1,11 +1,11 @@
-<%@ page import="hogaryestilo.Fiador" %>
+<%@ page import="webstore.Fiador" %>
 
 <div class="form-group ${hasErrors(bean: fiadorInstance, field: 'cliente', 'error')} required">
 	<label for="cliente">
 		<g:message code="fiador.cliente.label" default="Cliente" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="cliente" class="form-control" name="cliente.id" from="${hogaryestilo.Cliente.list()}" optionKey="id" required="" value="${fiadorInstance?.cliente?.id}" class="many-to-one"/>
+	<g:select id="cliente" class="form-control" name="cliente.id" from="${webstore.Cliente.list()}" optionKey="id" required="" value="${fiadorInstance?.cliente?.id}" class="many-to-one"/>
 
 </div>
 
@@ -50,6 +50,6 @@
 		<g:message code="fiador.zona.label" default="Zona" />
 
 	</label>
-	<g:select id="zona" class="form-control" name="zona.id" from="${hogaryestilo.Zona.list()}" optionKey="id" value="${fiadorInstance?.zona?.id}" class="many-to-one" noSelection="['null': '']"/>
+	<g:select id="zona" class="form-control" name="zona.id" from="${webstore.Zona.list()}" optionKey="id" value="${fiadorInstance?.zona?.id}" class="many-to-one" noSelection="['null': '']"/>
 
 </div>

@@ -16,7 +16,7 @@ environments {
     development {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://localhost/hogaryestilo"
+            url = "jdbc:mysql://localhost/webstore"
             username = "root"
             password = "123456"
         }
@@ -24,13 +24,13 @@ environments {
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://localhost/hogaryestilo"
+            url = "jdbc:mysql://localhost/webstore"
         }
     }
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://localhost/hogaryestilo"
+            url = "jdbc:mysql://localhost/webstore"
             username = "root"
             password = "123456"
             properties {

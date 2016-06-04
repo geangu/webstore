@@ -61,7 +61,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <g:select name="productoId" from="${hogaryestilo.Producto.list()}"
+                        <g:select name="productoId" from="${webstore.Producto.list()}"
                             optionKey="id" class="many-to-one" noSelection="['null': '']"/>
                     </td>
                     <td>
@@ -141,7 +141,7 @@
                     <g:message code="venta.cliente.label" default="Cliente" />
                     <span class="required-indicator">*</span>
                 </label>
-                <g:select id="cliente" name="clienteId" from="${hogaryestilo.Cliente.list()}" optionKey="id" required="" value="${venta?.cliente?.id}" class="many-to-one"/>
+                <g:select id="cliente" name="clienteId" from="${webstore.Cliente.list()}" optionKey="id" required="" value="${venta?.cliente?.id}" class="many-to-one"/>
             </div>
 
             <div class="fieldcontain ">

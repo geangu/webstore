@@ -1,4 +1,4 @@
-<%@ page import="hogaryestilo.Proveedor" %>
+<%@ page import="webstore.Proveedor" %>
 
 <div class="form-group ${hasErrors(bean: proveedorInstance, field: 'nit', 'error')} required">
 	<label for="nit">

@@ -1,4 +1,4 @@
-<%@ page import="hogaryestilo.Producto" %>
+<%@ page import="webstore.Producto" %>
 
 <div class="form-group ${hasErrors(bean: productoInstance, field: 'referencia', 'error')} required">
 	<label for="referencia">
@@ -59,7 +59,7 @@
 		<g:message code="producto.categoria.label" default="Categoria" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="categoria" class="form-control" name="categoria.id" from="${hogaryestilo.Categoria.list()}" optionKey="id" required="" value="${productoInstance?.categoria?.id}" class="many-to-one"/>
+	<g:select id="categoria" class="form-control" name="categoria.id" from="${webstore.Categoria.list()}" optionKey="id" required="" value="${productoInstance?.categoria?.id}" class="many-to-one"/>
 
 </div>
 

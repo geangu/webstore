@@ -1,4 +1,4 @@
-<%@ page import="hogaryestilo.Compra" %>
+<%@ page import="webstore.Compra" %>
 
 <div class="form-group ${hasErrors(bean: compraInstance, field: 'orden', 'error')} required">
 	<label for="orden">
@@ -21,7 +21,7 @@
 		<g:message code="compra.proveedor.label" default="Proveedor" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="proveedor" class="form-control" name="proveedor.id" from="${hogaryestilo.Proveedor.list()}" optionKey="id" required="" value="${compraInstance?.proveedor?.id}" class="many-to-one"/>
+	<g:select id="proveedor" class="form-control" name="proveedor.id" from="${webstore.Proveedor.list()}" optionKey="id" required="" value="${compraInstance?.proveedor?.id}" class="many-to-one"/>
 
 </div>
 

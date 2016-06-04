@@ -1,6 +1,6 @@
-import hogaryestilo.Rol
-import hogaryestilo.Usuario
-import hogaryestilo.UsuarioRol
+import webstore.Rol
+import webstore.Usuario
+import webstore.UsuarioRol
 
 
 class BootStrap {

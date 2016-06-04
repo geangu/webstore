@@ -11,7 +11,7 @@
     <fieldset class="form">
         <div class="fieldcontain required">
             <label for="fecha">Seleccione una Zona</label>
-            <g:select name="zona" from="${hogaryestilo.Zona.list()}" optionKey="id" noSelection="['null': '']"/>
+            <g:select name="zona" from="${webstore.Zona.list()}" optionKey="id" noSelection="['null': '']"/>
         </div>
     </fieldset>
     <fieldset class="buttons">

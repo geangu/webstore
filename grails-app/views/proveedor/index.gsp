@@ -1,4 +1,4 @@
-<%@ page import="hogaryestilo.Proveedor" %>
+<%@ page import="webstore.Proveedor" %>
 <!DOCTYPE html>
 <html>
 	<head>

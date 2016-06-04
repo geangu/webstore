@@ -1,4 +1,4 @@
-<%@ page import="hogaryestilo.Cliente" %>
+<%@ page import="webstore.Cliente" %>
 
 <div class="form-group ${hasErrors(bean: clienteInstance, field: 'documento', 'error')} required">
 	<label for="documento">
@@ -37,7 +37,7 @@
 		<g:message code="cliente.zona.label" default="Zona" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="zona" class="form-control" name="zona.id" from="${hogaryestilo.Zona.list()}" optionKey="id" required="" value="${clienteInstance?.zona?.id}" class="many-to-one"/>
+	<g:select id="zona" class="form-control" name="zona.id" from="${webstore.Zona.list()}" optionKey="id" required="" value="${clienteInstance?.zona?.id}" class="many-to-one"/>
 </div>
 
 <div class="form-group ${hasErrors(bean: clienteInstance, field: 'fiador', 'error')} required">
@@ -45,6 +45,6 @@
 		<g:message code="cliente.fiador.label" default="Fiador" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="fiador" class="form-control" name="fiador.id" from="${hogaryestilo.Fiador.list()}" optionKey="id" value="${clienteInstance?.fiador?.id}" class="many-to-one"
+	<g:select id="fiador" class="form-control" name="fiador.id" from="${webstore.Fiador.list()}" optionKey="id" value="${clienteInstance?.fiador?.id}" class="many-to-one"
 		noSelection="['0':'Seleccione']" />
 </div>

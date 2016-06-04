@@ -1,4 +1,4 @@
-<%@ page import="hogaryestilo.Categoria" %>
+<%@ page import="webstore.Categoria" %>
 <!DOCTYPE html>
 <html>
 	<head>

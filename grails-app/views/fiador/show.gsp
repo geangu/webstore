@@ -1,5 +1,5 @@
 
-<%@ page import="hogaryestilo.Fiador" %>
+<%@ page import="webstore.Fiador" %>
 <!DOCTYPE html>
 <html>
 	<head>

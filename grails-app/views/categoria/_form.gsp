@@ -1,4 +1,4 @@
-<%@ page import="hogaryestilo.Categoria" %>
+<%@ page import="webstore.Categoria" %>
 
 <div class="form-group ${hasErrors(bean: categoriaInstance, field: 'nombre', 'error')} required">
 	<label for="nombre">
