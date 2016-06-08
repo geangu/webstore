@@ -1,6 +1,5 @@
 <meta name="layout" content="main">
 
-
 <div class="pull-right">
     <g:if test="${venta.id}">
         <g:if test="${venta.tipo=='Contado'}">
@@ -12,6 +11,7 @@
         <g:link class="btn btn-danger" controller="venta" action="descartar" id="${venta.id}"><i class="fa fa-trash"></i> Descartar Venta </g:link>
     </g:if>
     <g:else>
+        <g:link class="btn btn-danger" controller="venta" action="lista"><i class="fa fa-list"></i> Lista </g:link>
         <a class="btn btn-primary" onclick="crearExcelVentasDia()">Reporte Ventas del día</a>
     </g:else>
 </div>

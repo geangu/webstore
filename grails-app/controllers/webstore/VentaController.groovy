@@ -1,7 +1,9 @@
 package webstore
 
-import org.springframework.security.access.annotation.Secured
+import grails.transaction.Transactional
 import groovy.sql.Sql
+import org.grails.plugin.filterpane.FilterPaneUtils
+import org.springframework.security.access.annotation.Secured
 
 @Secured(['ROLE_ADMIN','ROLE_USER'])
 class VentaController {
@@ -9,6 +11,7 @@ class VentaController {
     def springSecurityService
     def productoService
     def dataSource
+    def filterPaneService
 
     def guardar(){
         def venta = new Venta(
@@ -147,4 +150,45 @@ class VentaController {
         render rows as grails.converters.JSON
     }
 
+    def lista() {
+        def list = Venta.list(params)
+        [ventaInstanceList: list]
+    }
+
+    def filter(Integer max) {
+        if(!params.max) params.max = 100
+        render( view:'lista', model:[
+            ventaInstanceList: filterPaneService.filter( params, Venta ),
+            filterParams: FilterPaneUtils.extractFilterParams(params),
+            params: params
+        ])
+    }
+
+    def detalle(Venta venta){
+        render view:'imprimir', model:[venta: venta, showTemplate:true]
+    }
+
+    @Transactional
+    def borrar(Venta venta){
+
+        def credito = Credito.findByVenta(venta)
+        def cuotas = Cuota.findAllByCredito(credito)
+        cuotas.each { c ->
+            c.delete(flush: true, failOnError: true)
+        }
+        credito?.delete(flush:true, failOnError: true)
+
+        def detalles = DetalleVenta.findAllByVenta(venta)
+        detalles?.each { d ->
+            d.delete(flush: true, failOnError: true)
+        }
+
+        venta.detalles = null
+        venta.delete(flush:true, failOnError: true)
+
+        flash.message = "Se elimino la venta correctamente"
+        flash.type = "danger"
+
+        redirect action:'lista'
+    }
 }
