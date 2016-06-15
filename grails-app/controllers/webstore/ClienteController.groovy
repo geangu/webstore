@@ -123,6 +123,32 @@ class ClienteController {
         }
     }
 
+    def clienteMora(Cliente cliente){
+        def query = """
+                select credito_id id, min(fecha) fecha
+                from cuota
+                where credito_id in (
+                	select id from credito where saldo > 0
+                ) and pagada = false
+                group by credito_id"""
+
+        def sql = new Sql(dataSource)
+        def mora = false
+        sql.rows( query ).each{
+            def credito = Credito.get(it.id)
+            def dias_mora = TimeUnit.DAYS.convert(
+                new Date().getTime() - it.fecha.getTime(),
+                TimeUnit.MILLISECONDS
+            )
+            if(dias_mora > 30 && credito.saldo > BigInteger.ZERO){
+                if(credito.venta.cliente.id == cliente.id){
+                    mora = true
+                }
+            }
+        }
+        render mora
+    }
+
     def clientesMora(){
         def query = """
                 select credito_id id, min(fecha) fecha

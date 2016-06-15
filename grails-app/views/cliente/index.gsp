@@ -35,17 +35,22 @@
 						<g:sortableColumn property="direccion" title="${message(code: 'cliente.direccion.label', default: 'Direccion')}" />
 						<th><g:message code="cliente.zona.label" default="Zona" /></th>
 						<th><g:message code="cliente.fiador.label" default="Fiador" /></th>
+						<th>Deudor</th>
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${clienteInstanceList}" status="i" var="clienteInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+					<g:set var="mora"><g:include action="clienteMora" controller="cliente" id="${clienteInstance.id}"/></g:set>
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'} ${mora=='true'?'danger':''}">
 						<td><g:link action="show" id="${clienteInstance.id}">${fieldValue(bean: clienteInstance, field: "documento")}</g:link></td>
 						<td>${fieldValue(bean: clienteInstance, field: "nombre")}</td>
 						<td>${fieldValue(bean: clienteInstance, field: "telefono")}</td>
 						<td>${fieldValue(bean: clienteInstance, field: "direccion")}</td>
 						<td>${fieldValue(bean: clienteInstance, field: "zona")}</td>
 						<td>${fieldValue(bean: clienteInstance, field: "fiador")}</td>
+						<td>
+							${mora=='true'?'SI':'NO'}
+						</td>
 					</tr>
 				</g:each>
 				</tbody>
