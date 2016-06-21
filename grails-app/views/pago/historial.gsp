@@ -30,10 +30,11 @@
         </div>
     </fieldset>
     <hr>
-    
+
     <table class="table table-striped table-hover">
         <thead>
             <th>Cuota</th>
+            <th>Recibo</th>
             <th>Fecha Cuota</th>
             <th>Valor</th>
             <th>Fecha Pago</th>
@@ -43,6 +44,7 @@
             <g:each var="cuota" in="${credito.cuotas.sort{it.numero}}" status="i">
                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                     <td>${cuota.numero}</td>
+                    <td>${cuota.recibo}</td>
                     <td>${cuota.fecha.format('yyyy-MM-dd')}</td>
                     <td><g:formatNumber number="${cuota.valor}" format="\$###,##0" /></td>
                     <td>${cuota.fechaPago?.format('yyyy-MM-dd')}</td>

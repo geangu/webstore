@@ -45,6 +45,7 @@ class PagoController {
     def crear(){
 
         def cuota = Cuota.get(params.cuota)
+        def recibo = params.recibo
 
         def credito = cuota.credito
         def saldo = credito.saldo - new BigInteger(params.valorPago)
@@ -63,6 +64,7 @@ class PagoController {
                 cuota.pagada = true
                 cuota.fechaPago = new Date()
                 cuota.valorPago = valorPago
+                cuota.recibo = recibo
                 cuota.save(flush:true, failOnError: true)
             } else if(valorPago < credito.valorCuota){
                 cuota.valorPago = cuota.valorPago?:BigDecimal.ZERO
@@ -71,6 +73,7 @@ class PagoController {
                     cuota.pagada = true
                     cuota.fechaPago = new Date()
                 }
+                cuota.recibo = recibo
                 cuota.save(flush:true, failOnError: true)
             } else if(valorPago >= credito.valorCuota){
                 //Buscar las cuotas del credito y ir pagando hasta que se acabe el llete
@@ -84,12 +87,14 @@ class PagoController {
                             disponible = 0
                             _break = true
                             c.valorPago = valorMaximoPago
+                            c.recibo = recibo
                             c.save(flush: true, failOnError: true)
                         } else if ( (disponible - c.valor) > 0 ){
                             disponible -= c.valor
                             c.valorPago = c.valor
                             c.fechaPago = new Date()
                             c.pagada = true
+                            c.recibo = recibo
                             c.save(flush: true, failOnError: true)
                         }
                     }
@@ -151,6 +156,9 @@ class PagoController {
                     telefono: credito.venta.cliente.telefono,
                     direccion: credito.venta.cliente.direccion,
                     zona: credito.venta.cliente.zona.nombre,
+                    credito: credito.venta.orden,
+                    total: credito.total,
+                    saldo: credito.saldo,
                     ultimo_pago: it.fecha,
                     dias_mora: TimeUnit.DAYS.convert(
                         new Date().getTime() - it.fecha.getTime(),
@@ -160,6 +168,24 @@ class PagoController {
             }
         }
 
+        render rows as grails.converters.JSON
+    }
+
+    def cartera(){
+        def rows = []
+        def creditos = Credito.list()
+        creditos.each{ credito ->
+            rows << [
+                documento: credito.venta.cliente.documento,
+                nombre: credito.venta.cliente.nombre,
+                telefono: credito.venta.cliente.telefono,
+                direccion: credito.venta.cliente.direccion,
+                zona: credito.venta.cliente.zona.nombre,
+                credito: credito.venta.orden,
+                total: credito.total,
+                saldo: credito.saldo
+            ]
+        }
         render rows as grails.converters.JSON
     }
 

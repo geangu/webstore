@@ -5,9 +5,10 @@
     </head>
     <body>
         <div class="pull-right">
-            <a class="btn btn-primary" onclick="crearExcelPagosDia()">Reporte Pagos del día</a>
-            <a class="btn btn-primary" onclick="crearExcelMorosos()">Reporte Morosos</a>
-            <a class="btn btn-primary" href="${createLink(controller: 'pago', action:'zona')}">Reporte Morosos por Zona</a>
+            <a class="btn btn-primary" onclick="crearExcelCartera()">Cartera</a>
+            <a class="btn btn-primary" onclick="crearExcelPagosDia()">Pagos del día</a>
+            <a class="btn btn-primary" onclick="crearExcelMorosos()">Morosos</a>
+            <a class="btn btn-primary" href="${createLink(controller: 'pago', action:'zona')}">Morosos por Zona</a>
         </div>
         <g:if test="${flash.message}">
             <div class="alert alert-info" role="status">${flash.message}</div>
@@ -33,6 +34,7 @@
                 <g:submitButton name="search" class="btn btn-primary" value="${message(code: 'default.button.search.label', default: 'Buscar')}" />
             </fieldset>
         </g:form>
+        <g:render template="crearExcelCarteraScript" />
         <g:render template="crearExcelMorososScript" />
         <g:render template="crearExcelPagosDiaScript" />
     </body>

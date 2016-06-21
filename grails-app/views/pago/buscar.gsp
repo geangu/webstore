@@ -17,24 +17,28 @@
         <input type="hidden" name="creditoId" value="${credito.id}"/>
         <div class="form-group">
             <label for="total">Cliente</label>
-            <input class="form-control" name="total" value="${cliente}" type="text" readonly="true" disabled="true"/>
+            <input class="form-control" name="total" id="total" value="${cliente}" type="text" readonly="true" disabled="true"/>
         </div>
         <div class="form-group">
-            <label for="total">Total Crédito</label>
-            <input class="form-control" name="total" value="${credito.total}" type="number" readonly="true" disabled="true"/>
+            <label for="total-c">Total Crédito</label>
+            <input class="form-control" name="total-c" id="total-c" value="${credito.total}" type="number" readonly="true" disabled="true"/>
         </div>
         <div class="form-group">
             <label for="saldo">Saldo Pendiente</label>
-            <input class="form-control" name="saldo" value="${credito.saldo}" type="number" readonly="true" disabled="true"/>
+            <input class="form-control" name="saldo" id="saldo" value="${credito.saldo}" type="number" readonly="true" disabled="true"/>
         </div>
         <div class="fieldcontain required">
-            <label for="fecha">Cuota</label>
+            <label for="cuota">Cuota</label>
             <g:select name="cuota" from="${ credito.cuotas.findAll{!it.pagada}.sort{it.numero} }" required="true" optionKey="id" optionValue="numero"/>
             <input type="hidden" name="valor" value="${credito.saldo<credito.valorCuota?credito.saldo:credito.valorCuota}"/>
         </div>
+        <div class="fieldcontain required">
+            <label for="recibo">Recibo</label>
+            <input class="form-control" name="recibo" id="recibo" type="number"/>
+        </div>
         <div class="form-group">
             <label for="valorPago">Valor Pago</label>
-            <input class="form-control" name="valorPago" value="${credito.valorCuota}" type="number"/>
+            <input class="form-control" name="valorPago" id="valorPago" value="${credito.valorCuota}" type="number"/>
         </div>
     </fieldset>
     <fieldset class="text-center">

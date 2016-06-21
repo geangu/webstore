@@ -12,6 +12,7 @@
 
 		<div id="list-producto" class="content scaffold-list" role="main">
 			<div class="pull-right">
+				<a class="btn btn-primary" href="#" onclick="crearExcelProductos()">Reporte</a>
 				<a class="btn btn-primary" href="${createLink(controller: 'categoria')}">Categorias</a>
 				<g:link class="btn btn-primary" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link>
 				<filterpane:filterButton class="btn btn-primary"/>
@@ -58,5 +59,39 @@
 				<g:paginate total="${productoInstanceCount ?: 0}" />
 			</div>
 		</div>
+		<script>
+		    function crearExcelProductos(){
+
+		        $.ajax({
+		            url: '${createLink(controller: "producto", action:"reporte")}',
+		            method: 'post',
+		            data: null,
+		            success: function(data){
+		                var array = typeof data != 'object' ? JSON.parse(data) : data;
+		                var str = 'Categoria;Referencia;Nombre;Precio Compra;Precio Contado;Precio Credito;\r\n';
+		                for (var i = 0; i < array.length; i++) {
+		                    var line = '';
+		                    for (var index in array[i]) {
+		                        line += array[i][index] + ';';
+		                    }
+		                    line.slice(0,line.Length-1);
+		                    str += line + '\r\n';
+		                }
+
+		                var blob = new Blob(["\ufeff", str]);
+		                var url = URL.createObjectURL(blob);
+
+		                var downloadLink = document.createElement("a");
+		                downloadLink.href = url;
+		                downloadLink.download = "data.csv";
+		                document.body.appendChild(downloadLink);
+		                downloadLink.click();
+		                document.body.removeChild(downloadLink);
+
+		            }
+		        });
+		    }
+		</script>
+
 	</body>
 </html>

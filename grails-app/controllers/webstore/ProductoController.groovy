@@ -118,4 +118,20 @@ class ProductoController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    def reporte(){
+        def list = Producto.list()
+        def rows = []
+        list.each{
+            rows << [
+                categoria: it.categoria.nombre,
+                referencia: it.referencia,
+                nombre: it.nombre,
+                precioCompra: it.precioCompra,
+                precioContado: it.precioContado,
+                precioCredito: it.precioCredito
+            ]
+        }
+        render rows as grails.converters.JSON
+    }
 }
