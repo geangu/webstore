@@ -40,20 +40,18 @@
 	<g:textField name="encargado" required="" value="${proveedorInstance?.encargado}" class="form-control" />
 </div>
 
-<div class="form-group ${hasErrors(bean: proveedorInstance, field: 'banco', 'error')} required">
+<div class="form-group ${hasErrors(bean: proveedorInstance, field: 'banco', 'error')}">
 	<label for="banco">
 		<g:message code="proveedor.banco.label" default="Banco" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="banco" required="" value="${proveedorInstance?.banco}" class="form-control" />
+	<g:textField name="banco" value="${proveedorInstance?.banco}" class="form-control" />
 </div>
 
-<div class="form-group ${hasErrors(bean: proveedorInstance, field: 'numeroCuenta', 'error')} required">
+<div class="form-group ${hasErrors(bean: proveedorInstance, field: 'numeroCuenta', 'error')}">
 	<label for="numeroCuenta">
 		<g:message code="proveedor.numeroCuenta.label" default="Numero Cuenta" />
-		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="numeroCuenta" required="" value="${proveedorInstance?.numeroCuenta}" class="form-control" />
+	<g:textField name="numeroCuenta" value="${proveedorInstance?.numeroCuenta}" class="form-control" />
 </div>
 
 <div class="form-group ${hasErrors(bean: proveedorInstance, field: 'observaciones', 'error')} ">
