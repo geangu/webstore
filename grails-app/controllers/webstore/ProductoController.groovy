@@ -127,7 +127,6 @@ class ProductoController {
                 categoria: it.categoria.nombre,
                 referencia: it.referencia,
                 nombre: it.nombre,
-                precioCompra: it.precioCompra,
                 precioContado: it.precioContado,
                 precioCredito: it.precioCredito
             ]

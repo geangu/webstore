@@ -68,7 +68,7 @@
 		            data: null,
 		            success: function(data){
 		                var array = typeof data != 'object' ? JSON.parse(data) : data;
-		                var str = 'Categoria;Referencia;Nombre;Precio Compra;Precio Contado;Precio Credito;\r\n';
+		                var str = 'Categoria;Referencia;Nombre;Precio Contado;Precio Credito;\r\n';
 		                for (var i = 0; i < array.length; i++) {
 		                    var line = '';
 		                    for (var index in array[i]) {
