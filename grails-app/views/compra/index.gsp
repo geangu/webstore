@@ -39,8 +39,9 @@
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${compraInstanceList}" status="i" var="compraInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+				<g:each in="${compraInstanceList}" status="i" var="compraInstance" status="i">
+					<g:set var="mora"><g:include action="compraMora" controller="proveedor" params="${[compra_id:compraInstance.id]}"/></g:set>
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'} ${mora=='true'?'danger':''}">
 						<td>${compraInstance.orden}</td>
 						<td>${compraInstance.fecha.format('dd-MM-yyyy')}</td>
 						<td>${fieldValue(bean: compraInstance, field: "proveedor")}</td>

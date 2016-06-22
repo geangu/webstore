@@ -1,6 +1,8 @@
 package webstore
 
 import grails.transaction.Transactional
+import groovy.sql.Sql
+import java.util.concurrent.TimeUnit
 import org.grails.plugin.filterpane.FilterPaneUtils
 import org.springframework.security.access.annotation.Secured
 import static org.springframework.http.HttpStatus.*
@@ -9,6 +11,7 @@ import static org.springframework.http.HttpStatus.*
 @Secured(['ROLE_ADMIN'])
 class ProveedorController {
 
+    def dataSource
     def filterPaneService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -113,4 +116,61 @@ class ProveedorController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    def compraMora(){
+        def mora = false
+        def query = """
+            select compra_id id, min(fecha) fecha
+            from pago
+            where
+            compra_id in (
+                select id from compra where saldo > 0
+            ) and compra_id = '$params.compra_id' and
+            pagado = false
+            group by compra_id"""
+
+        def sql = new Sql(dataSource)
+        def cantidad = 0
+        sql.rows( query ).each{
+            def compra = Compra.get(it.id)
+            def dias_mora = TimeUnit.DAYS.convert(
+                new Date().getTime() - it.fecha.getTime(),
+                TimeUnit.MILLISECONDS
+            )
+            if(dias_mora > 30 && compra.saldo > BigInteger.ZERO){
+                cantidad++
+                mora = true
+            }
+        }
+        render mora
+    }
+
+    def proveedorMora(Proveedor proveedorInstance){
+        def mora = false
+        def query = """
+            select p.compra_id id, min(p.fecha) fecha
+            from pago p inner join compra c on c.id = p.compra_id
+            where
+            p.compra_id in (
+                select id from compra where saldo > 0
+            ) and
+            p.pagado = false and c.proveedor_id = '$proveedorInstance.id'
+            group by compra_id"""
+
+        def sql = new Sql(dataSource)
+        def cantidad = 0
+        sql.rows( query ).each{
+            def compra = Compra.get(it.id)
+            def dias_mora = TimeUnit.DAYS.convert(
+                new Date().getTime() - it.fecha.getTime(),
+                TimeUnit.MILLISECONDS
+            )
+            if(dias_mora > 30 && compra.saldo > BigInteger.ZERO){
+                cantidad++
+                mora = true
+            }
+        }
+        render mora
+    }
+
 }

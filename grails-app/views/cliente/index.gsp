@@ -48,9 +48,7 @@
 						<td>${fieldValue(bean: clienteInstance, field: "direccion")}</td>
 						<td>${fieldValue(bean: clienteInstance, field: "zona")}</td>
 						<td>${fieldValue(bean: clienteInstance, field: "fiador")}</td>
-						<td>
-							${mora=='true'?'SI':'NO'}
-						</td>
+						<td>${mora=='true'?'SI':'NO'}</td>
 					</tr>
 				</g:each>
 				</tbody>

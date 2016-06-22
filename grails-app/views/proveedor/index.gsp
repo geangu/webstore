@@ -38,8 +38,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					<g:each in="${proveedorInstanceList}" var="proveedorInstance">
-						<tr>
+					<g:each in="${proveedorInstanceList}" var="proveedorInstance" status="i">
+						<g:set var="mora"><g:include action="proveedorMora" controller="proveedor" id="${proveedorInstance.id}"/></g:set>
+						<tr class="${(i % 2) == 0 ? 'even' : 'odd'} ${mora=='true'?'danger':''}">
 							<td><g:link action="show" id="${proveedorInstance.id}">${fieldValue(bean: proveedorInstance, field: "nit")}</g:link></td>
 							<td>${fieldValue(bean: proveedorInstance, field: "razonSocial")}</td>
 							<td>${fieldValue(bean: proveedorInstance, field: "telefono")}</td>
