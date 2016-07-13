@@ -32,6 +32,7 @@ class CreditoController {
             cuota.fecha = fechaCuota
             cuota.valor = credito.valorCuota
             cuota.pagada = false
+            cuota.recibo = params.recibo
             cuota.save(flush: true, failOnError: true)
         }
 
