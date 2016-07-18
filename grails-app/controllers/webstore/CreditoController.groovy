@@ -21,7 +21,7 @@ class CreditoController {
         credito.numeroCuotas = params.int('cuotas')
         credito.total = venta.total
         credito.valorCuota = venta.total / params.int('cuotas')
-        credito.saldo = venta.total - credito.valorCuota
+        credito.saldo = venta.total
         credito.save(flush: true, failOnError: true)
 
         for ( int i = 0; i < credito.numeroCuotas; i++){
@@ -29,10 +29,9 @@ class CreditoController {
             def cuota = new Cuota()
             cuota.credito = credito
             cuota.numero = i + 1
+            cuota.pagada = false
             cuota.fecha = fechaCuota
             cuota.valor = credito.valorCuota
-            cuota.pagada = false
-            cuota.recibo = params.recibo
             cuota.save(flush: true, failOnError: true)
         }
 

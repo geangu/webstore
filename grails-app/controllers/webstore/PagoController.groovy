@@ -76,7 +76,7 @@ class PagoController {
                 cuota.recibo = recibo
                 cuota.save(flush:true, failOnError: true)
             } else if(valorPago >= credito.valorCuota){
-                //Buscar las cuotas del credito y ir pagando hasta que se acabe el llete
+                //Buscar las cuotas del credito e ir pagando hasta que se acabe el llete
                 def disponible = valorPago + (cuota.valorPago?:0)
                 def _break = false
                 credito.cuotas.sort{ it.numero }.each{ c ->
@@ -89,7 +89,7 @@ class PagoController {
                             c.valorPago = valorMaximoPago
                             c.recibo = recibo
                             c.save(flush: true, failOnError: true)
-                        } else if ( (disponible - c.valor) > 0 ){
+                        } else if ( (disponible - c.valor) >= 0 ){
                             disponible -= c.valor
                             c.valorPago = c.valor
                             c.fechaPago = new Date()

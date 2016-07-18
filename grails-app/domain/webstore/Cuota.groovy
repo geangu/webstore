@@ -14,7 +14,7 @@ class Cuota {
     static constraints = {
         credito nullable: false
         numero nullable: false
-        recibo nullable: false
+        recibo nullable: true
         fecha nullable: false
         valor nullable: false
         pagada nullable: false, default: false

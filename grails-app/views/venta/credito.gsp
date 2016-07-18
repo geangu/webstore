@@ -32,14 +32,6 @@
         </div>
 
         <div class="form-group">
-            <label for="recibo">
-                <g:message code="cuota.recibo.label" default="Recibo primera cuota" />
-                <span class="required-indicator">*</span>
-            </label>
-            <input class="form-control" id="recibo" name="recibo" value="" type="number"/>
-        </div>
-
-        <div class="form-group">
             <label for="valorCuota">
                 <g:message code="venta.valorCuota.label" default="Valor Cuota" />
                 <span class="required-indicator">*</span>
