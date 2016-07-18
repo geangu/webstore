@@ -21,7 +21,7 @@ class CreditoController {
         credito.numeroCuotas = params.int('cuotas')
         credito.total = venta.total
         credito.valorCuota = venta.total / params.int('cuotas')
-        credito.saldo = venta.total
+        credito.saldo = venta.total - credito.valorCuota
         credito.save(flush: true, failOnError: true)
 
         for ( int i = 0; i < credito.numeroCuotas; i++){
