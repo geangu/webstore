@@ -10,7 +10,7 @@ class Fiador {
     Zona zona
 
     static constraints = {
-        cliente nullable: false
+        cliente nullable: true
         documento nullable: false
         nombre nullable: false
         telefono nullable: false

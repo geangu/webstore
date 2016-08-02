@@ -5,8 +5,8 @@
 		<g:message code="fiador.cliente.label" default="Cliente" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="cliente" class="form-control" name="cliente.id" from="${webstore.Cliente.list()}" optionKey="id" required="" value="${fiadorInstance?.cliente?.id}" class="many-to-one"/>
-
+	<g:select id="cliente" class="form-control" name="cliente.id" from="${webstore.Cliente.list()}" optionKey="id" value="${fiadorInstance?.cliente?.id}" class="many-to-one"
+		noSelection="['':'Seleccione']"/>
 </div>
 
 <div class="form-group ${hasErrors(bean: fiadorInstance, field: 'documento', 'error')} required">

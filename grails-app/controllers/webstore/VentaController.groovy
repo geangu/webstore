@@ -25,6 +25,7 @@ class VentaController {
             abono: BigInteger.ZERO,
             saldo: BigInteger.ZERO,
             total: BigInteger.ZERO,
+            descuento: BigInteger.ZERO,
             cerrada: false
         )
         venta.save(flush: true, failOnError: true)
@@ -45,6 +46,19 @@ class VentaController {
                 cantidad: params.int('cantidad')
             ).save(flush: true, failOnError: true)
             calcularTotal(venta)
+        }
+        render view: 'detalles', model: [venta: venta], params:[id: venta.id]
+    }
+
+    def descuento(Venta venta){
+        try{
+            venta.descuento = new BigInteger(params.descuento)
+            venta.save(flush: true, failOnError: true)
+            calcularTotal(venta)
+        } catch(e) {
+            e.printStacktrace()
+            flash.message = 'No se puede guardar descuento, por favor rectifique el valor'
+            flash.type = "error"
         }
         render view: 'detalles', model: [venta: venta], params:[id: venta.id]
     }
@@ -108,6 +122,14 @@ class VentaController {
                 venta.total += (d.producto.precioCredito * d.cantidad)
             }
         }
+
+        if(venta.descuento != null){
+            println "Quitar el descuento"
+            venta.total -= venta.descuento
+        } else {
+            println "nunca entra"
+        }
+
         venta.save(flush: true, failOnError: true)
     }
 

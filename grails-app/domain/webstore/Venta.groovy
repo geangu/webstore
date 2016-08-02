@@ -9,6 +9,7 @@ class Venta {
     Cliente cliente
     String observaciones
     BigInteger total
+    BigInteger descuento
 
     Boolean cerrada
 
@@ -22,6 +23,7 @@ class Venta {
         cliente nullable: false
         observaciones nullable: true
         total nullable: false
+        total nullable: false, default: BigInteger.ZERO
         cerrada nullable: false, default: false
     }
 }

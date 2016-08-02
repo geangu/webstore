@@ -45,6 +45,19 @@
                 <g:formatNumber number="${venta.total}" format="\$###,##0" />
             </td>
         </tr>
+        <tr>
+            <td style="text-align:right;"><strong>Descuento</strong></td>
+            <td>
+                <g:form controller="venta" action="descuento" id="${venta.id}" method="post">
+                    <div class="col-xs-10">
+                        <input class="form-control" type="number" name="descuento" value="${venta.descuento}">
+                    </div>
+                    <div class="col-xs-2">
+                        <input class="btn btn-default" type="submit" value="Guardar Descuento">
+                    </div>
+                </g:form>
+            </td>
+        </tr>
     </table>
 
     <g:form controller="venta" action="anadir" id="${venta.id}">
